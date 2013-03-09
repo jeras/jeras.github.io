@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
+<svg id="text" width="200" height="200" fill="#ffa500" stroke="#805100" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
+xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<rect x="10" y="10" width="180" height="180"/>
+	<text font-size="100" font-family="Arial" x="20px" y="90px">text</text>
+	<text font-size="100" font-family="Century Gothic" fill="#6464E4" stroke="none" x="15px" y="180px">test</text>
+</svg>

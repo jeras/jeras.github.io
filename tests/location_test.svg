@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="800" height="250" onload="on_load(evt)">
+	<title>jedilnik</title>
+	<desc>glavni jedilnik s pomočjo katerega se potuje po spletni strani </desc>
+
+	<!-- ECMAScript za spreminjanje vidljivosti menujev -->
+
+
+
+
+	<script type="text/ecmascript"> <![CDATA[
+		stevilo_sto=4;
+		var sta_sto=new Array(stevilo_sto);
+		sta_sto=[0,0,0,0];
+		var	akt_sto=0;
+
+		var last_click_sto=0;
+		var last_click_iko=0;
+		var last_over_sto=0;
+		var last_over_iko=0;
+
+		function on_load (evt) {
+			svgdoc = evt.getCurrentNode().getOwnerDocument();
+			sub_address = window.location.search.substring(1,window.location.search.length);
+			text_output(1,sub_address);
+			text_output(2,'sub_adr:'+sub_address);
+			text_output(3,'dolzina:'+sub_address.length);
+			open_subpage(sub_address);
+		}
+
+		function text_output(n,tekst) {
+			var debug_txt = svgdoc.getElementById('debug_txt_polje_'+n);
+			debug_txt.getFirstChild().setData(tekst);
+		}
+
+		function open_subpage()
+		{return;}
+
+		]]>
+	</script>
+
+
+<g  font-family="Arial-BoldMT" font-size="14" fill="#CC0000">
+	<text x="40" y="20" id="debug_txt_polje_1">Še prazno</text>
+	<text x="40" y="40" id="debug_txt_polje_2">Še prazno</text>
+	<text x="40" y="60" id="debug_txt_polje_3">Še prazno</text>
+	<text x="40" y="80" id="debug_txt_polje_4">Še prazno</text>
+	<text x="40" y="100" id="debug_txt_polje_5">Še prazno</text>
+	<text x="40" y="120" id="debug_txt_polje_6">Še prazno</text>
+	<text x="40" y="150">Examples:</text>
+	<a xlink:href="http://www.htmlgoodies.com/beyond/jspass.html" target="_blank"><text x="40" y="170" fill="blue">http://www.htmlgoodies.com/beyond/jspass.html</text></a>
+	<a xlink:href="http://www.sjhdesign.com/scrptwrx/scripts/variabl3.htm" target="_blank"><text x="40" y="190" fill="blue">http://www.sjhdesign.com/scrptwrx/scripts/variabl3.htm</text></a>
+</g>
+
+</svg>

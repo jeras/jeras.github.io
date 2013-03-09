@@ -1,0 +1,101 @@
+/* ========================================================================= */
+/* inline MAIN MENU on top of the page                                       */
+/* ========================================================================= */
+
+div.main_menu a { text-decoration: none; }
+
+/*div.main_menu ul { margin: 0px; }*/
+div.main_menu ul li { display: inline; margin: 0px; padding: 0px; }
+div.main_menu ul li a { color: #ffffff; font-weight: bold; padding: 2px 8px; }
+
+div.main_menu ul li a:link,
+div.main_menu ul li a:visited,
+div.main_menu ul li a:active { background: #808080; }
+
+div.main_menu ul li.selected a:link,
+div.main_menu ul li.selected a:visited,
+div.main_menu ul li.selected a:active,
+div.main_menu ul li.selected a:hover { background: none; }
+
+div.main_menu ul li a:hover { background: #505759; }
+
+/* ========================================================================= */
+/* page contents                                                             */
+/* ========================================================================= */
+
+a:link,
+a:visited,
+a:hover { color: #FFA500; }
+a:active { color: red; }
+
+img {vertical-align: middle}
+a:link img, a:visited img {border-style: none}
+
+html, body {
+	color: white;
+	background: black;
+	font-family: "Verdana", sans-serif;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+div.main {
+	vertical-align: top;
+}
+
+h1 {
+	font-size: 4em;
+	margin-left: 0.25em;
+	margin-right: 0.25em;
+}
+
+h2 {
+	font-size: 1.5em;
+	font-weight: bold;
+	background: #808080;
+	padding: .25em .25em;
+	margin-bottom: 0.25em;
+}
+
+h3 {
+	margin-top: 0em;
+	font-size: 1.3em;
+	padding: .2em .4em;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+
+p {
+	font-size: 1em;
+	padding-left: .5em;
+	padding-right: .5em;
+}
+/* ========================================================================= */
+/* page outro                                                                */
+/* ========================================================================= */
+
+hr.separator {
+	margin-top: 2em;
+}
+
+div.bottom {
+	vertical-align: top;
+	padding: .5em .5em 0 .5em;
+	clear: both;
+}
+
+div.bottom span {
+	display: block; float: left; 
+	font-size: 1em;
+}
+
+div.bottom span.verification {
+	width: 50%;
+	text-align: right;
+}
+
+div.bottom span.copyright {
+	width: 50%;
+	text-align: left;
+}

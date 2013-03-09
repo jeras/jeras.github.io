@@ -1,0 +1,90 @@
+html, body {
+	line-height:	120%;
+	color:			white;
+	background:		black;
+	font-family:	"Century Gothic", sans-serif;
+	margin:		0;
+	padding:	0;
+	border:		0;
+}
+
+div#head {
+	vertical-align: bottom;
+	margin: 1em;
+}
+
+td#page_name{
+	text-align: left;
+	width: 50%;
+}
+
+td#home_link{
+	text-align: right;
+}
+
+div#main {
+	vertical-align: top;
+}
+
+div#bottom {
+	margin-top: 2em;
+	vertical-align: top;
+}
+
+td#page_info{
+	vertical-align: top;
+	text-align: left;
+	width: 50%;
+}
+
+td#validation_link{
+	text-align: right;
+}
+
+
+td {
+	vertical-align: top;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+a:link, a:visited, a:hover {
+  color: #FFA500;
+}
+
+a:active {
+  color: red;
+}
+
+a:link img, a:visited img {border-style: none}
+a img {color: black} /* The only way to hide the border in NS 4.x */
+
+img {vertical-align: middle}
+
+table#page {
+	height: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+h1 {
+	font-size: 4em;
+}
+
+h2 {
+	font-size: 1.5em;
+	font-weight: bold;
+	background: #808080;
+	padding:	.25em;
+	margin-bottom: 0.25em;
+}
+
+h3 {
+	margin-top: 0em;
+	font-size: 1.3em;
+	padding: .2em;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}

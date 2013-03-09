@@ -1,0 +1,1589 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
+<svg viewBox="0 0 800 600" onload="on_load()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:aex="http://www.adobe.com/svg10-extensions" aex:timeline="independent"
+xmlns:a3="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" a3:scriptImplementation="Adobe">
+  <title>predstavitev jezika svg</title>
+  <desc>To je predstavitev jezika svg pripravljena za uvodno predavanje o SVG
+  This is slideshow created in SVG intended for a introductory seminar on SVG</desc>
+<!-- ECMAScript za spreminjanje vidljivosti menujev -->
+<script> <![CDATA[
+	var tekoca_stran=1;
+	var tekoci_primer=null;
+	var st_strani=21;
+	
+	function on_load(evt) {
+		// definira novi menu za ASV
+		var newMenuRoot = parseXML( printNode( document.getElementById( 'NewMenu' ) ), contextMenu );
+		contextMenu.replaceChild( newMenuRoot, contextMenu.firstChild );
+		// pogleda, če je bil zahtevan direkten skok na podstran
+//		sub_address = window.location.search.substring(1,window.location.search.length);
+//		if (sub_address.length == 0)
+//			return;
+//		odpri_stran(sub_address);
+	}
+
+	function izpis(n,tekst) {
+		var debug_txt = document.getElementById('debug_txt_polje_'+n);
+		debug_txt.getFirstChild().setData(tekst);
+	}
+
+	function odpri_stran(n) {
+		if (tekoca_stran!=n) {
+			document.getElementById('stran_'+tekoca_stran).setAttribute("display","none");
+			document.getElementById('stran_'+n).setAttribute("display","inline");
+			tekoca_stran=n;
+		}
+	}
+
+	function naprej() {
+		if (tekoca_stran<st_strani) {
+			document.getElementById('stran_'+tekoca_stran).setAttribute("display","none");
+			document.getElementById('stran_'+(tekoca_stran+1)).setAttribute("display","inline");
+			tekoca_stran++;
+		}
+	}
+
+	function nazaj() {
+		if (tekoca_stran>1) {
+			document.getElementById('stran_'+tekoca_stran).setAttribute("display","none");
+			document.getElementById('stran_'+(tekoca_stran-1)).setAttribute("display","inline");
+			tekoca_stran--;
+		}
+	}
+	
+	function kazalo() {
+		if (tekoca_stran!=0) {
+			document.getElementById('stran_'+tekoca_stran).setAttribute("display","none");
+			document.getElementById('stran_0').setAttribute("display","inline");
+			tekoca_stran=0;
+		}
+	}
+	
+	function odpri_primer(niz) {
+		document.getElementById('ikone_strani').setAttribute("display","none");
+		document.getElementById('ikone_primeri').setAttribute("display","inline");
+		document.getElementById('stran_'+tekoca_stran).setAttribute("display","none");
+		document.getElementById(niz).setAttribute("display","inline");
+		tekoci_primer=niz;
+	}
+
+	function zapri_primer() {
+		document.getElementById('ikone_primeri').setAttribute("display","none");
+		document.getElementById('ikone_strani').setAttribute("display","inline");
+		document.getElementById(tekoci_primer).setAttribute("display","none");
+		document.getElementById('stran_'+tekoca_stran).setAttribute("display","inline");
+		tekoci_primer=null;
+	}
+
+	function uklopi_ozadje() {
+		document.getElementById('iko_jazadaj').setAttribute("display","none");
+		document.getElementById('ozadje').setAttribute("display","inline");
+		document.getElementById('iko_nezadaj').setAttribute("display","inline");
+	}
+
+	function izklopi_ozadje() {
+		document.getElementById('iko_nezadaj').setAttribute("display","none");
+		document.getElementById('ozadje').setAttribute("display","none");
+		document.getElementById('iko_jazadaj').setAttribute("display","inline");
+	}
+
+]]></script>
+
+<defs>
+	<menu id="NewMenu" xmlns="http://foo">
+		<header>SVG jedilnik</header>
+		<menu>
+			<header>strani</header>
+			<item onactivate="odpri_stran(0)" checked="now">kazalo</item>
+			<item onactivate="odpri_stran(1)" checked="now">SVG</item>
+			<item onactivate="odpri_stran(2)" checked="now">standardi</item>
+			<item onactivate="odpri_stran(3)" checked="now">hierarhija</item>
+			<item onactivate="odpri_stran(4)" checked="now">koordinatni sistem</item>
+			<item onactivate="odpri_stran(5)" checked="now">grafični elementi</item>
+			<item onactivate="odpri_stran(6)" checked="now">krivulje</item>
+			<item onactivate="odpri_stran(7)" checked="now">tekst</item>
+			<item onactivate="odpri_stran(8)" checked="now">fonti</item>
+			<item onactivate="odpri_stran(9)" checked="now">rob in ploskev</item>
+			<item onactivate="odpri_stran(10)" checked="now">vidljivost</item>
+			<item onactivate="odpri_stran(11)" checked="now">vzorci in gradienti</item>
+			<item onactivate="odpri_stran(12)" checked="now">obrezovanje in maskiranje</item>
+			<item onactivate="odpri_stran(13)" checked="now">filtri</item>
+			<item onactivate="odpri_stran(14)" checked="now">iterakcija</item>
+			<item onactivate="odpri_stran(15)" checked="now">povezave</item>
+			<item onactivate="odpri_stran(16)" checked="now">animacija</item>
+			<item onactivate="odpri_stran(17)" checked="now">skriptanje</item>
+			<item onactivate="odpri_stran(18)" checked="now">SVG DOM</item>
+			<item onactivate="odpri_stran(19)" checked="now">programska oprema</item>
+			<item onactivate="odpri_stran(20)" checked="now">učenje SVG</item>
+			<item onactivate="odpri_stran(21)" checked="now">primeri izdelkov v SVG</item>
+			<separator/>
+			<item onactivate="odpri_stran(21)">MIME tip</item>
+			<item onactivate="odpri_stran(21)">kompresija</item>
+			<item onactivate="odpri_stran(21)">zvok</item>
+			<item onactivate="odpri_stran(21)">prednalaganje</item>
+			<item onactivate="odpri_stran(21)">jedilnik</item>
+			<item>test ČĆŽŠĐčćžšđ</item>
+		</menu>
+		<item onactivate="nazaj()">&lt;-  nazaj</item>
+		<item onactivate="kazalo()">._   kazalo</item>
+		<item onactivate="naprej()">-&gt;  naprej</item>
+		<menu>
+			<header>nastavitve</header>
+			<item onactivate="preklopi_ozadje()" checked="now">ozadje</item>
+			<menu>
+				<header id="MenuLang">jezik</header>
+				<item onactivate="preklopi_jezik(slo)" checked="yes">Slovenščina</item>
+				<item onactivate="preklopi_jezik(eng)" checked="now">English</item>
+				<item onactivate="preklopi_jezik(ita)" checked="now">Italiano</item>
+			</menu>
+		</menu>
+		<separator/>
+		<item action='ZoomIn'>povečaj</item>
+		<item action='ZoomOut'>zmanjšaj</item>
+		<item action='OriginalView'>originalna velikost</item>
+		<separator/>
+		<item action='Quality'>visoka kvaliteta</item>
+		<item action='Pause'>pavza</item>
+		<item action='Mute'>tišina</item>
+		<separator/>
+		<item action='Copy'>kopiraj tekst</item>
+		<item action='Find'>poišči...</item>
+		<item action='FindAgain'>poišči naslednje</item>
+		<separator/>
+		<item action='CopySVG'>kopiraj SVG</item>
+		<item action='ViewSource'>izvorna koda</item>
+		<item action='SaveAs'>posnami SVG kot...</item>
+		<separator/>
+		<item action='Help'>Help...</item>
+		<item action='About'>About ASV</item>
+ 	</menu>
+
+	<font id="Font1" horiz-origin-x="200" horiz-origin-y="200" horiz-adv-x="200" >
+		<font-face font-family="IzIhandwriten01" units-per-em="400" cap-height="300" x-height="150" ascent-height="300"
+			ascent="700" descent="0" alphabetic="0" mathematical="350" ideographic="400" hanging="500">
+		</font-face>
+
+		<missing-glyph horiz-adv-x="300" d="M206 520C225 520 255 525 273 518C343 490 315 318 308 261C306 248 298 214 304 201C306 198 305 208 306 212C320 258 305 195 311 237C315 267 317 303 327 332C349 396 383 492 455 514C455 514 480 518 489 519 M242 266C242 266 337 291 384 266"/>
+
+		<glyph unicode="A" horiz-adv-x="302" d="M198 186C245 280 254 367 305 459C315 477 325 495 331 498C337 501 347 429 358 383C376 308 422 200 451 201 M250 308C261 308 280 315 291 314C317 311 317 299 366 307"/>
+		<glyph unicode="B" horiz-adv-x="240" d="M204 492C204 451 197 386 200 345C200 345 206 246 204 204 M218 463C212 504 317 515 343 475C371 434 261 388 263 388C263 388 328 402 356 366C412 293 406 195 293 200C275 201 233 215 215 218"/>
+		<glyph unicode="C" horiz-adv-x="278" d="M360 471C418 489 308 513 268 488C214 453 187 326 207 265C223 215 285 183 331 211C362 229 402 263 429 287"/>
+		<glyph unicode="Č" horiz-adv-x="278" d="M360 471C418 489 308 513 268 488C214 453 187 326 207 265C223 215 285 183 331 211C362 229 402 263 429 287 M282 585C332 523 299 507 361 589"/>
+		<glyph unicode="D" horiz-adv-x="234" d="M200 502C200 502 211 409 207 362C204 320 210 239 210 198 L211 296C212 349 213 383 219 452C222 498 261 507 299 493C415 450 409 224 299 200C280 196 217 205 227 234"/>
+		<glyph unicode="E" horiz-adv-x="258" d="M408 237C317 184 254 206 212 200 M374 376C327 388 262 391 217 379 M397 485C344 467 281 492 228 497 M201 199C201 237 207 291 208 329C211 384 208 445 220 498"/>
+		<glyph unicode="F" horiz-adv-x="248" d="M329 355C278 354 258 349 210 338 M399 486C329 484 276 493 221 498 M202 199C202 237 198 292 200 329C203 385 200 445 212 499"/>
+		<glyph unicode="G" horiz-adv-x="290" d="M408 461C315 606 159 298 210 234C267 163 443 209 440 302C438 344 354 333 333 333C311 333 262 338 331 339C331 339 428 340 437 343"/>
+		<glyph unicode="H" horiz-adv-x="272" d="M202 500 L202 293 C202 264 207 229 200 201 M212 355 C212 355 334 343 399 352 M411 495 C411 426 395 262 422 208"/>
+		<glyph unicode="I" horiz-adv-x="60" d="M207 500 C207 440 215 401 205 342 C198 302 201 240 201 200"/>
+		<glyph unicode="J" horiz-adv-x="156" d="M305 499 C305 429 312 287 291 224 C280 191 231 196 214 219 C199 239 202 242 202 267"/>
+		<glyph unicode="K" horiz-adv-x="218" d="M204 500 C204 407 201 292 201 199 M362 499 L212 345 C209 334 259 299 267 291 C296 263 336 230 368 207"/>
+		<glyph unicode="L" horiz-adv-x="225" d="M203 499 C203 464 194 218 203 204 C206 199 210 199 215 200 C215 200 334 200 374 200"/>
+		<glyph unicode="M" horiz-adv-x="268" d="M207 499 C208 426 221 289 199 204 M218 498 L238 475 C257 454 300 395 321 416 C335 429 396 493 412 495 L412 472 L412 393 C412 393 416 247 417 199"/>
+		<glyph unicode="N" horiz-adv-x="236" d="M200 191 L202 318 C203 334 203 498 203 498 C204 504 222 497 233 488 C339 397 368 201 373 200 C375 199 376 263 376 278 C376 278 381 437 385 499"/>
+		<glyph unicode="O" horiz-adv-x="244" d="M314 498 C188 498 175 261 232 213 C243 203 261 202 276 200 C435 180 408 474 342 498 C335 501 322 498 315 498"/>
+		<glyph unicode="P" horiz-adv-x="221" d="M210 350 C252 350 295 325 336 352 C352 362 365 385 368 402 C375 448 372 467 312 495 C285 508 242 489 211 479 M201 501 C201 462 205 422 202 384 C197 323 199 260 199 200"/>
+		<glyph unicode="Q" horiz-adv-x="248" d="M343 497 C284 507 217 476 203 417 C196 388 205 355 207 327 C209 299 212 261 231 237 C285 171 355 199 374 273 C383 309 384 344 390 380 C401 446 409 480 346 494 M295 240 C385 240 365 163 428 163"/>
+		<glyph unicode="R" horiz-adv-x="221" d="M210 499 C210 400 200 300 200 200 M218 474 C322 566 455 351 297 323 C267 318 234 322 218 351 M272 317 C316 272 324 250 351 193"/>
+		<glyph unicode="S" horiz-adv-x="265" d="M376 460 C376 514 233 514 248 460 C257 427 316 417 340 406 C404 378 426 319 410 255 C395 194 274 189 235 216 C207 236 199 310 199 344"/>
+		<glyph unicode="Š" horiz-adv-x="265" d="M376 460 C376 514 233 514 248 460 C257 427 316 417 340 406 C404 378 426 319 410 255 C395 194 274 189 235 216 C207 236 199 310 199 344 M270 604 C270 599 305 541 305 541 C310 541 338 592 346 599"/>
+		<glyph unicode="T" horiz-adv-x="300" d="M320 494 C296 399 328 294 307 199 M199 499 C260 499 324 499 384 492 C406 489 428 498 450 498"/>
+		<glyph unicode="U" horiz-adv-x="247" d="M201 499 C201 435 190 242 244 209 C261 199 280 201 298 202 C324 203 349 208 368 230 C378 242 384 275 387 290 C391 311 404 476 393 491"/>
+		<glyph unicode="V" horiz-adv-x="274" d="M200 500 C225 425 236 419 247 340 C249 327 278 204 288 199 C291 198 326 266 345 313 C370 376 395 433 424 494"/>
+		<glyph unicode="W" horiz-adv-x="376" d="M200 500 C225 425 236 419 247 340 C249 327 278 204 288 199 C291 198 326 266 345 313 C370 376 395 433 424 494M301 502 C317.723 451.83 366.791 252.104 389 201 C392 200 427 268 446 315 C471 378 496 435 525 496"/>
+		<glyph unicode="X" horiz-adv-x="258" d="M202 499 C208 483 225 473 232 457 C275 368 337 274 404 203 M410 493 C358 455 309 351 275 295 C256 262 221 231 199 201"/>
+		<glyph unicode="Y" horiz-adv-x="272" d="M199 501 C202 490 302 344 304 342 M422 494 C369 443 345 397 312 342 M308 338 C308 338 307 230 307 200"/>
+		<glyph unicode="Z" horiz-adv-x="290" d="M228 494 C277 502 414 501 410 492 C375 400 232 309 200 206 C195 192 288 208 320 209 C359 220 401 200 441 203 M251 367 C289 367 340 370 379 367" />
+		<glyph unicode="Ž" horiz-adv-x="290" d="M228 494 C277 502 414 501 410 492 C375 400 232 309 200 206 C195 192 288 208 320 209 C359 220 401 200 441 203 M251 367 C289 367 340 370 379 367 M287 601 C287 596 314 541 314 541 C320 540 352 591 358 598"/>
+		<glyph unicode="a" horiz-adv-x="213" d="M314 338 C244 385 159 265 226 211 C241 199 258 201 274 207 C327 224 340 280 331 334 C330 336 329 350 325 351 C319 353 328 261 330 243 C335 195 327 212 373 208"/>
+		<glyph unicode="b" horiz-adv-x="160" d="M207 499 C207 437 208 358 202 296 C200 274 201 252 201 231 L201 203 C201 240 199 374 276 346 C320 330 310 281 304 258 C288 200 230 183 211 219"/>
+		<glyph unicode="c" horiz-adv-x="185" d="M326 319 C305 366 221 357 205 310 C174 215 301 157 336 242"/>
+		<glyph unicode="č" horiz-adv-x="185" d="M326 319 C305 366 221 357 205 310 C174 215 301 157 336 242 M244 450 C244 442 265 396 272 398 C282 402 299 436 302 446"/>
+		<glyph unicode="d" horiz-adv-x="199" d="M318 315 C318 370 186 367 200 241 C210 155 333 227 321 307 C309 388 326 499 326 499 C326 421 303 197 350 200"/>
+		<glyph unicode="e" horiz-adv-x="181" d="M237 288 L290 284 C294 284 310 281 314 285 C316 287 315 300 314 302 C297 364 209 375 199 280 C190 188 309 185 331 220"/>
+		<glyph unicode="f" horiz-adv-x="155" d="M305 500 C287 500 250 488 241 469 C234 453 238 230 240 200 M198 351 C198 351 260 350 280 350"/>
+		<glyph unicode="g" horiz-adv-x="173" d="M317 328 C233 392 152 276 228 213 C275 173 313 231 313 280 C313 294 319 304 322 316 C322 318 323 321 322 322 C319 322 314 288 314 260 C314 226 342 66 312 46 C301 39 258 31 237 47 C182 89 224 119 248 133"/>
+		<glyph unicode="h" horiz-adv-x="180" d="M201 498 C201 400 199 267 208 199 C207 295 224 347 272 349 C300 350 331 317 331 198"/>
+		<glyph unicode="i" horiz-adv-x="57" d="M204 350 C210 323 204 231 199 201 M198 434 C198 434 205 429 206 428"/>
+		<glyph unicode="j" horiz-adv-x="61" d="M204 348 C199 274 240 85 166 51 C128 34 46 53 143 120 M200 437 C206 429 203 433 211 427"/>
+		<glyph unicode="k" horiz-adv-x="162" d="M206 499 C206 396 223 301 201 200 M299 349 C291 338 218 276 217 271 C212 255 307 201 312 200"/>
+		<glyph unicode="l" horiz-adv-x="98" d="M203 499 C202 461 192 254 207 214 C213 198 235 201 248 201"/>
+		<glyph unicode="m" horiz-adv-x="218" d="M198 343 C212 338 207 314 207 295 C208 271 210 229 211 199 C214 250 204 358 255 349 C297 342 289 250 291 199 C297 255 273 354 343 346 C380 342 367 222 359 198"/>
+		<glyph unicode="n" horiz-adv-x="178" d="M201 343 C205 299 208 257 208 212 L209 201 C212 199 209 209 209 213 L209 236 C212 266 210 300 222 329 C227 340 236 347 246 348 C336 362 328 270 328 198"/>
+		<glyph unicode="o" horiz-adv-x="172" d="M255 345 C217 345 154 212 251 204 C262 204 275 199 287 202 C335 213 336 375 268 346"/>
+		<glyph unicode="p" horiz-adv-x="179" d="M206 347 C206 322 195 49 195 49 C195 45 198 35 194 37 C194 37 204 285 214 310 C227 341 263 348 274 349 C331 357 343 218 312 206 C296 200 220 186 210 233"/>
+		<glyph unicode="q" horiz-adv-x="175" d="M309 332 C253 397 159 259 219 213 C250 189 311 198 322 244 C327 265 323 285 320 305 L320 328 C320 328 316 310 316 281 L316 174 C316 140 305 41 331 33 C359 26 399 37 428 41"/>
+		<glyph unicode="r" horiz-adv-x="139" d="M201 348 L200 220 L200 202 C203 201 202 228 202 229 C202 255 197 287 205 311 C215 341 275 369 289 329"/>
+		<glyph unicode="s" horiz-adv-x="186" d="M327 338 C317 348 310 350 297 350 C282 350 233 345 240 310 C246 285 363 284 329 222 C310 187 209 191 199 255"/>
+		<glyph unicode="š" horiz-adv-x="186" d="M327 338 C317 348 310 350 297 350 C282 350 233 345 240 310 C246 285 363 284 329 222 C310 187 209 191 199 255 M268 444 C281 381 298 401 328 441"/>
+		<glyph unicode="t" horiz-adv-x="131" d="M237 501 C237 459 231 243 245 216 C251 204 269 200 281 200 M199 351 C224 351 247 346 272 346"/>
+		<glyph unicode="u" horiz-adv-x="168" d="M207 349 C205 323 197 296 201 271 C204 253 218 218 231 207 C248 192 290 201 300 221 C317 253 319 313 316 349"/>
+		<glyph unicode="v" horiz-adv-x="183" d="M200 348 C202 317 224 281 233 252 C235 246 249 198 253 201 C262 207 259 219 273 245 C292 282 300 316 333 347"/>
+		<glyph unicode="w" horiz-adv-x="242" d="M200 348 C202 317 224 281 233 252 C235 246 249 198 253 201 C262 207 259 219 273 245 C292 282 300 316 333 347M259 348 C261 317 283 281 292 252 C294 246 308 198 312 201 C321 207 318 219 332 245C351 282 359 316 392 347"/>
+		<glyph unicode="x" horiz-adv-x="189" d="M333 349 C305 319 273 294 245 265 C226 246 215 222 199 202 M211 349 C259 312 304 250 339 200"/>
+		<glyph unicode="y" horiz-adv-x="214" d="M200 349 C232 276 240 308 268 203 M364 346 C315 285 208 48 152 31"/>
+		<glyph unicode="z" horiz-adv-x="189" d="M217 350 C232 350 247 345 262 343 C275 341 292 341 305 342 L323 348 C324 346 319 346 318 344 C282 310 248 264 216 227 C214 225 199 210 199 207 C199 205 211 205 212 205 C245 205 309 219 340 199"/>
+		<glyph unicode="ž" horiz-adv-x="189" d="M219 350 C233 350 248 345 263 343 C277 340 293 341 307 342 L324 348 C325 346 321 346 319 344 C283 310 250 264 218 227 C216 225 200 210 201 208 C201 205 212 206 214 206 C247 206 310 219 341 199 M247 441 C283 380 263 381 308 434"/>
+
+		<glyph unicode=" " horiz-adv-x="300"/>
+		<glyph unicode="0" horiz-adv-x="209" d="M305 500 C292 500 278 502 266 496 C208 469 191 236 249 207 C345 159 373 443 309 500 M200 229 C206 272 322 431 359 459"/>
+		<glyph unicode="1" horiz-adv-x="124" d="M200 435 C249 473 274 499 274 499 L273 434 C273 358 274 277 274 201"/>
+		<glyph unicode="2" horiz-adv-x="236" d="M200 417 C221 443 219 484 259 495 C301 506 358 482 343 431 C334 396 199 208 200 202 L261 204 C261 204 355 201 386 200"/>
+		<glyph unicode="3" horiz-adv-x="211" d="M203 459 C209 514 301 509 304 464 C306 444 296 415 277 404 C262 396 235 389 238 390 C296 402 353 398 360 325 C367 257 317 183 246 204 C236 207 213 225 206 235 C204 238 191 250 214 249"/>
+		<glyph unicode="4" horiz-adv-x="219" d="M304 497 C328 511 180 338 201 325 C209 320 350 318 370 318 M304 366 C285 341 279 231 279 197"/>
+		<glyph unicode="5" horiz-adv-x="200" d="M226 498 C238 459 240 421 232 385 C231 380 221 364 227 362 C227 362 267 375 297 368 C332 359 363 269 328 228 C294 188 223 198 200 217 M236 496 C273 478 311 498 349 496"/>
+		<glyph unicode="6" horiz-adv-x="181" d="M310 484 C306 510 254 496 237 478 C200 437 177 231 246 205 C354 165 361 361 249 332 C227 326 212 314 209 295"/>
+		<glyph unicode="7" horiz-adv-x="204" d="M201 497 C233 497 362 487 353 496 C352 497 352 493 351 492 C330 463 306 436 289 405 C256 346 220 270 214 201 M224 369 C269 369 268 370 311 361"/>
+		<glyph unicode="8" horiz-adv-x="152" d="M268 496 C247 501 230 496 217 480 C206 468 197 456 199 439 C208 386 288 332 301 257 C310 206 238 185 217 211 C175 265 232 312 262 351 C294 393 322 464 271 501"/>
+		<glyph unicode="9" horiz-adv-x="170" d="M299 489 C281 491 258 496 239 492 C204 483 189 442 214 416 C233 395 280 391 299 415 C308 426 304 444 304 458 L303 473 L303 483 C303 456 312 433 314 406 C317 360 320 327 317 281 C316 259 309 238 288 220 C252 189 189 199 200 224"/>
+		<glyph unicode="(" horiz-adv-x="106" d="M255 523 C187 418 180 301 252 176"/>
+		<glyph unicode=")" horiz-adv-x="106" d="M199 521 C270 416 278 299 202 174"/>
+		<glyph unicode="{" horiz-adv-x="114" d="M265 517 C198 514 232 422 219 371 C214 350 200 349 200 349 C200 349 212 348 220 328 C239 281 200 180 264 181"/>
+		<glyph unicode="}" horiz-adv-x="114" d="M200 517 C265 514 232 422 245 371 C250 350 264 349 264 349 C264 349 251 348 243 328 C226 281 264 180 201 181"/>
+		<glyph unicode="[" horiz-adv-x="98" d="M247 515 C239 515 204 521 201 515 C194 506 198 178 201 177 C206 174 241 177 248 177"/>
+		<glyph unicode="]" horiz-adv-x="98" d="M201 515 C209 515 241 521 245 515 C250 506 247 178 245 177 C239 174 206 177 200 177"/>
+		<glyph unicode="&lt;" horiz-adv-x="204" d="M351 516 L200 349 C200 349 342 192 352 177"/>
+		<glyph unicode="&gt;" horiz-adv-x="204" d="M200 515 L347 348 C347 348 210 196 202 176"/>
+		<glyph unicode="@" horiz-adv-x="334" d="M396 312 C398 329 384 345 363 349 C236 375 249 181 357 204 C397 212 386 257 394 288 L399 308 C400 314 400 295 400 289 C401 270 388 229 400 214 C421 188 470 216 478 245 C483 263 483 302 478 323 C455 406 353 443 287 410 C194 364 194 299 204 245 C226 128 361 113 456 147"/>
+		<glyph unicode="&amp;" horiz-adv-x="242" d="M390 288 C374 261 356 249 332 230 C305 209 246 176 204 229 C196 239 197 261 209 272 C250 315 283 283 334 336 C355 358 374 396 344 423 C303 461 244 417 255 359 C263 317 339 221 393 205"/>
+		<glyph unicode="÷" horiz-adv-x="147" d="M200 350 C229 350 267 348 297 348 M249 391 C244 407 264 397 253 390 M244 308 C238 295 252 293 249 308"/>
+		<glyph unicode=":" horiz-adv-x="69" d="M205 212 C209 234 231 196 209 202 M204 344 C225 363 210 320 205 337"/>
+		<glyph unicode="=" horiz-adv-x="138" d="M199 379 L287 379 M199 317 L287 317"/>
+		<glyph unicode="!" horiz-adv-x="68" d="M205 212 C209 234 231 196 209 202 M210 496 C217 412 202 342 211 253"/>
+		<glyph unicode="×" horiz-adv-x="134" d="M200 299 C231 327 249 369 284 394 M200 394 C225 366 266 333 283 300"/>
+		<glyph unicode="\" horiz-adv-x="200" d="M350 202 C328 236 268 352 201 498"/>
+		<glyph unicode="#" horiz-adv-x="261" d="M271 425 C271 349 275 284 262 202 M348 426 C340 363 343 285 343 203 M200 347 C273 347 334 346 407 346 M202 276 C202 276 358 274 411 273"/>
+		<glyph unicode="-" horiz-adv-x="147" d="M200 350 C229 350 267 348 297 348"/>
+		<glyph unicode="'" horiz-adv-x="61" d="M211 507 C211 488 207 460 201 443"/>
+		<glyph unicode='"' horiz-adv-x="96" d="M211 507 C211 488 207 460 201 443 M244 506 C244 488 241 460 234 443"/>
+		<glyph unicode="|" horiz-adv-x="51" d="M199 522 L200 176"/>
+		<glyph unicode="." horiz-adv-x="69" d="M205 212 C209 234 231 196 209 202"/>
+		<glyph unicode="+" horiz-adv-x="147" d="M200 350 C229 350 267 348 297 348 M246 396 C246 396 246 320 246 298"/>
+		<glyph unicode=";" horiz-adv-x="66" d="M205 203 C209 211 215 212 215 202 C218 167 173 84 183 114 M204 344 C225 363 210 320 205 337"/>
+		<glyph unicode="%" horiz-adv-x="258" d="M201 200 C235 219 351 447 407 499 M252 475 C210 475 198 425 240 414 C293 399 319 468 258 477 M350 281 C311 299 273 232 332 220 C385 209 406 272 356 282"/>
+		<glyph unicode="/" horiz-adv-x="200" d="M202 205 C223 239 283 355 350 501"/>
+		<glyph unicode="_" horiz-adv-x="350" d="M199 196 C199 196 422 194 497 193"/>
+		<glyph unicode="," horiz-adv-x="63" d="M201 206 C205 214 211 215 211 204 C214 170 190 147 179 117"/>
+		<glyph unicode="?" horiz-adv-x="161" d="M227 209 C231 232 252 194 231 200 M199 448 C207 460 208 485 223 493 C262 513 312 482 311 438 C309 407 267 380 251 354 C232 321 234 289 234 251"/>
+		<glyph unicode="*" horiz-adv-x="211" d="M200 445 L256 448 L280 500 L305 447 L360 446 L318 407 L334 350 L282 380 L227 348 L248 406 z"/>
+		<glyph unicode="~" horiz-adv-x="146" d="M200 349 C222 400 239 372 249 348 C261 318 282 311 296 351"/>
+		<glyph unicode="°" horiz-adv-x="106" d="M222 489 C157 462 250 397 255 458 C256 480 240 488 226 490"/>
+
+		<hkern u1="A" u2="C,Č,G,U" k="30"/>
+		<hkern u1="A" u2="T,V,W,Y" k="70"/>
+		<hkern u1="A" u2="a,c,č,d,e,f,g,o,q,u" k="25"/>
+		<hkern u1="A" u2="v,w,y" k="40"/>
+
+		<hkern u1="B,C,Č,D,G,J,O,P,S,Š,U" u2="A" k="25"/>
+		<hkern u1="F,P,V,W,Y" u2="A" k="80"/>
+		<hkern u1="P" u2="A" k="60"/>
+		<hkern u1="T" u2="A" k="110"/>
+
+		<hkern u1="B,C,Č,G,S,Š" u2="V,W,Y" k="30"/>
+		<hkern u1="B,C,Č,G,S,Š" u2="T" k="40"/>
+		<hkern u1="D,O,R" u2="V,W,Y" k="30"/>
+		<hkern u1="D,O,R" u2="T" k="40"/>
+
+		<hkern u1="F" u2="C,Č,O,Q,S,Š" k="30"/>
+		<hkern u1="F" u2="G" k="50"/>
+		<hkern u1="F,T" u2="J" k="90"/>
+		<hkern u1="F" u2="a,c,č,d,e,g,o,q,s,š" k="90"/>
+		<hkern u1="F" u2="i,j,m,n,p,r,u,v,w,x,y,z,ž" k="70"/>
+		<hkern u1="F" u2="f" k="40"/>
+
+		<hkern u1="K,Z,Ž" u2="C,Č,G,J,O,Q,S,Š" k="20"/>
+		<hkern u1="K,Z,Ž" u2="a,c,č,d,e,g,o,q,s,š,u" k="20"/>
+		<hkern u1="K,Z,Ž" u2="f,t,v,w" k="30"/>
+		<hkern u1="K,Z,Ž" u2="y" k="40"/>
+
+		<hkern u1="L" u2="C,Č,G,J,O,Q,S,Š,U" k="20"/>
+		<hkern u1="L" u2="V,W" k="60"/>
+		<hkern u1="L" u2="T,Y" k="90"/>
+		<hkern u1="L" u2="a,c,č,d,e,f,g,o,q,s,š,t,u" k="20"/>
+		<hkern u1="L" u2="v,w" k="30"/>
+		<hkern u1="L" u2="y" k="40"/>
+
+		<hkern u1="P" u2="G,J,S,Š,T,V,W,X,Y,Z,Ž" k="20"/>
+		<hkern u1="P" u2="J" k="60"/>
+		<hkern u1="P" u2="a,c,č,d,e,g,i,j,o,q,s,š,u,v,w,x,y,z,ž" k="40"/>
+		<hkern u1="P" u2="m,n,o,p,r,u,v,w,x,y,z,ž" k="20"/>
+
+		<hkern u1="Q" u2="j,p" k="-20"/>
+
+		<hkern u1="R" u2="a,c,č,d,e,g,o,q,s,š" k="20"/>
+
+		<hkern u1="T" u2="C,Č,O,Q,S,Š" k="40"/>
+		<hkern u1="T" u2="G" k="70"/>
+		<hkern u1="T" u2="a,c,č,d,e,g,i,j,m,n,o,p,q,r,s,š,u,v,w,x,y,z,ž" k="120"/>
+		<hkern u1="T" u2="f" k="30"/>
+
+		<hkern u1="V,W" u2="C,Č,O,Q,S,Š" k="30"/>
+		<hkern u1="V,W" u2="G" k="50"/>
+		<hkern u1="V,W" u2="J" k="80"/>
+		<hkern u1="V,W" u2="a,c,č,d,e,g,o,q,s,š" k="70"/>
+		<hkern u1="V,W" u2="m,n,p,r,u,v,w,x,y,z,ž" k="50"/>
+		<hkern u1="V,W" u2="f" k="30"/>
+		<hkern u1="V,W" u2="i,j" k="20"/>
+
+		<hkern u1="Y" u2="C,Č,O,Q,S,Š" k="40"/>
+		<hkern u1="Y" u2="G" k="50"/>
+		<hkern u1="Y" u2="J" k="90"/>
+		<hkern u1="Y" u2="a,c,č,d,e,g,m,n,o,p,q,r,s,š,u,v,w,x,y,z,ž" k="90"/>
+		<hkern u1="Y" u2="f,i,j" k="30"/>
+
+		<hkern u1="b,c,č,e,o,p,s,š,u" u2="A,X" k="20"/>
+		<hkern u1="r,v,w,y" u2="A,X" k="50"/>
+		<hkern u1="f" u2="A" k="50"/>
+
+		<hkern u1="a,d,l" u2="C,Č,G,J,O,S,Š,U,a,c,č,d,e,g,o,q,s,š,u" k="20"/>
+		<hkern u1="a,d,l" u2="Q,v,w,f,t" k="30"/>
+		<hkern u1="a,d,l" u2="y" k="40"/>
+
+		<hkern u1="a,b,c,č,e,h,m,n,o,p,r,s,š" u2="V,W" k="60"/>
+		<hkern u1="a,b,c,č,e,g,h,i,j,m,n,o,p,q,r,s,š" u2="T,Y" k="90"/>
+		<hkern u1="d,f,l" u2="V,W,T,Y" k="20"/>
+		<hkern u1="i,j" u2="V,W" k="40"/>
+		<hkern u1="g,k,q,u,v,w,z,ž" u2="V,W" k="60"/>
+		<hkern u1="g,k,q,u,v,w,z,ž" u2="T,Y" k="60"/>
+
+		<hkern u1="f,r" u2="J" k="60"/>
+		<hkern u1="r" u2="a,c,č,e,g,o,q" k="20"/>
+		<hkern u1="r" u2="s,š" k="40"/>
+		<hkern u1="f" u2="a,c,č,e,g,o,q" k="30"/>
+		<hkern u1="f" u2="s,š" k="40"/>
+		<hkern u1="f" u2="i,j" k="20"/>
+		<hkern u1="f" u2="f,t" k="15"/>
+		<hkern u1="t,v,w,y,z,ž" u2="J" k="30"/>
+		<hkern u1="t,v,w,x,y,z,ž" u2="a,c,č,d,e,g,o,q" k="20"/>
+		<hkern u1="v,w,y" u2="s,š" k="30"/>
+		<hkern u1="x" u2="J" k="20"/>
+		<hkern u1="t,x,z,ž" u2="s,š" k="15"/>
+
+		<hkern u1="b,c,č,e,o,p,s,š" u2="f,t,v,w,x,y,ž,ž" k="15"/>
+		<hkern u1="h,m,n,q" u2="f,t,v,w,y" k="15"/>
+		
+		<hkern u1="g,q" u2="j" k="-80"/>
+		<hkern u1="j" u2="j" k="-70"/>
+		<hkern u1="q" u2="p,g,y" k="-50"/>
+	</font>
+</defs>
+
+<rect fill="none" stroke="red" x="0" y="0" width="800" height="600"/>
+
+<g id="ozadje" opacity="0.2" display="none">
+	<image width="800" height="600" xlink:href="ozadje.jpg"/>
+</g>
+
+<g font-family="Century Gothic" fill="#6464E4" font-size="20" stroke="none">
+	<g id="stran_0" display="none">
+		<text>
+		<tspan x="130" y="40" font-size="40">kazalo</tspan>
+		<tspan y="80">
+			<tspan fill="orange">
+				<tspan x="20" dy="25" onclick="odpri_stran(1)">- SVG Scalable Vector Graphics</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(2)">- standardi</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(3)">- hierarhija v SVG</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(4)">- koordinatni sistem, transformacije</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(5)">- osnovni grafični elemneti</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(6)">- krivulje</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(7)">- tekst</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(8)">- fonti</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(9)">- rob in ploskev</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(10)">- nastavljanje vidljivosti</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(11)">- vzorci in gradienti</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(12)">- obrezovanje in maskiranje</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(13)">- filtri</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(14)">- iterakcija</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(15)">- povezave</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(16)">- animacija</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(17)">- skriptanje</tspan>
+				<tspan x="20" dy="25" onclick="odpri_stran(18)">- SVG DOM</tspan>
+			</tspan>
+		</tspan>
+		<tspan y="80">
+			<tspan x="400" dy="25">SVG v praksi</tspan>
+			<tspan fill="orange">
+				<tspan x="400" dy="35" onclick="odpri_stran(19)">- programska orodja</tspan>
+				<tspan x="400" dy="25" onclick="odpri_stran(20)">- učenje jezika SVG</tspan>
+				<tspan x="400" dy="25" onclick="odpri_stran(21)">- primeri izdelkov SVG</tspan>
+			</tspan>
+			<tspan x="400" dy="50">Dodatek</tspan>
+			<tspan fill="orange">
+				<tspan x="400" dy="35" onclick="odpri_stran(21)">- MIME tip</tspan>
+				<tspan x="400" dy="25" onclick="odpri_stran(21)">- kompresija</tspan>
+				<tspan x="400" dy="25" onclick="odpri_stran(21)">- zvok</tspan>
+				<tspan x="400" dy="25" onclick="odpri_stran(21)">- prednalaganje</tspan>
+				<tspan x="400" dy="25" onclick="odpri_stran(21)">- jedilnik</tspan>
+				<tspan x="400" dy="25" onclick="odpri_stran(21)">- ...</tspan>
+			</tspan>
+		</tspan>
+		</text>
+		<g id="ikone_ozadja" stroke="none" transform="translate(14,43)">
+			<g id="iko_jazadaj" onclick="uklopi_ozadje()" display="inline" >
+				<rect width="102" height="20" fill="#808080"/>
+				<text x="3" y="15" font-size="15" fill="#ffffff" stroke="none">uklopi ozadje</text>
+			</g>
+			<g id="iko_nezadaj" onclick="izklopi_ozadje()" display="none" >
+				<rect width="102" height="20" fill="#808080"/>
+				<text x="3" y="15" font-size="15" fill="#ffffff" stroke="none">izklopi ozadje</text>
+			</g>
+		</g>
+	</g>
+
+
+	<g id="stran_1" display="inline">
+		<text>
+		<tspan x="130" y="40" font-size="40">SVG Scalable Vector Graphics</tspan>
+		<tspan x="20" y="80">
+			<tspan x="20" dy="25">- je dokaj nov standard namanjen prikazovanju vektorske grafike na spletu</tspan>
+			<tspan x="20" dy="25">- temelji na standardih XML</tspan>
+			<tspan x="20" dy="25">- omogoča animacijo položaja, oblike, barve, prosojnosti in večine ostalega</tspan>
+			<tspan x="20" dy="25">- omogoča iterakcijo preko miške in tipkovnice</tspan>
+			<tspan x="20" dy="25">- zaradi odprtosti in nadgradljivosti standarda,</tspan>
+			<tspan x="30" dy="25">bo verjetno v prihodnosti tekmoval s FLASH-om</tspan>
+			<tspan x="20" dy="25">- razvija se okrnjena verzija za dlančnike in prenosne telefone</tspan>
+			<tspan x="20" dy="25">- trenutno je največja ovira razvoju SVG</tspan>
+			<tspan x="30" dy="25">pomanjkanje programskih orodij za risanje in animacijo</tspan>
+		</tspan>
+		</text>
+	</g>
+
+	<g id="stran_2" display="none">
+		<text x="130" y="40" font-size="40">standardi</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- zunanji okvir daje standard <tspan fill="black">XML</tspan></tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://www.w3.org/TR/REC-xml/" target="_blank">
+			www.w3.org/TR/REC-xml/</a></tspan>
+			<tspan x="20" dy="25">- grafične elemente ter hierarhijo definira <tspan fill="black">SVG</tspan></tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://www.w3.org/TR/2001/REC-SVG-20010904/" target="_blank">
+			www.w3.org/TR/2001/REC-SVG-20010904/</a></tspan>
+			<tspan x="20" dy="25">- animacijo omogoča standard <tspan fill="black">SMIL</tspan> animation</tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://www.w3.org/TR/2001/REC-smil-animation-20010904/" target="_blank">
+			www.w3.org/TR/2001/REC-smil-animation-20010904/</a></tspan>
+			<tspan x="20" dy="25">- iterakcija je dosežena s pomočjo <tspan fill="black">ECMAscript</tspan> ali <tspan fill="black">JAVAscript</tspan></tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://www.w3.org/TR/2001/REC-SVG-20010904/ecmascript-binding.html" target="_blank">
+			www.w3.org/TR/2001/REC-SVG-20010904/ecmascript-binding.html</a></tspan>
+			<tspan x="20" dy="25">- <tspan fill="black">UNICODE</tspan> definira standardno kodno tabelo</tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://www.unicode.org/unicode/standard/versions/" target="_blank">
+			www.unicode.org/unicode/standard/versions/</a></tspan>
+			<tspan x="20" dy="40">- standard v pripravi <tspan fill="black">SVG 1.1</tspan> in <tspan fill="black">2.0</tspan></tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://www.w3.org/TR/2002/WD-SVG11-20020108/" target="_blank">
+			http://www.w3.org/TR/2002/WD-SVG11-20020108/</a></tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://www.w3.org/TR/SVG2Reqs" target="_blank">
+			http://www.w3.org/TR/SVG2Reqs</a></tspan>
+			<tspan x="20" dy="30">- standard v pripravi <tspan fill="black">SVG Tiny</tspan> in <tspan fill="black">SVG Basic</tspan></tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://www.w3.org/TR/2002/WD-SVGMobile-20020108/" target="_blank">
+			http://www.w3.org/TR/2002/WD-SVGMobile-20020108/</a></tspan>
+		</text>
+	</g>
+
+	<g id="stran_3" display="none">
+		<text x="130" y="40" font-size="40">hierarhija v SVG</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- element <tspan fill="black">&lt;svg&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_svg')"> primer</tspan>
+				<tspan x="40" dy="25">je nujno zunanji element neke vsebine v SVG jeziku</tspan>
+				<tspan x="40" dy="25">lahko pa se pojavlja znotraj zunanjega <tspan fill="black">&lt;svg&gt;</tspan> in služi sestavljanju SVG vsebin</tspan>
+			<tspan x="20" dy="25">- element <tspan fill="black">&lt;g&gt;</tspan></tspan>
+				<tspan x="40" dy="25">omogoča grupiranje objektov,</tspan>
+				<tspan x="40" dy="25">izvajanje transformacij nad grupo in določanje lastnosti grupe (barva...)</tspan>
+			<tspan x="20" dy="25">- element <tspan fill="black">&lt;symbol&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_symbol_use')"> primer</tspan>
+				<tspan x="40" dy="25">omogoča grupiranje objektov v simbol,</tspan>
+				<tspan x="40" dy="25">ti objekti se ne izrisujejo,</tspan>
+				<tspan x="40" dy="25">simbol lahko kličemo z elementom &lt;use&gt;</tspan>
+			<tspan x="20" dy="25">- element <tspan fill="black">&lt;defs&gt;</tspan></tspan>
+				<tspan x="40" dy="25">hrani definicije filtrov, gradientov in vzorcev,</tspan>
+				<tspan x="40" dy="25">vsi grafični elementi znotraj definicij se ne izrisujejo,</tspan>
+				<tspan x="40" dy="25">možno jih je pa uporabiti kakor simbole</tspan>
+			<tspan x="20" dy="25">- element <tspan fill="black">&lt;image&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_image')"> primer</tspan>
+				<tspan x="40" dy="25">omogoča vgradnjo slike iz zunanje datoteke svg, jpg ali png</tspan>
+			<tspan x="20" dy="25">- element <tspan fill="black">&lt;use&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_symbol_use')"> primer</tspan>
+				<tspan x="40" dy="25">omogoča vgradnjo simbola ali kopije kakega elementa</tspan>
+				<tspan x="40" dy="25">kakor referenca se uporablja <tspan fill="black">id</tspan> atribut elementa</tspan>
+				<tspan x="40" dy="25">možno je klicanje elementov iz zunanjih svg datotek</tspan>
+		</text>
+	</g>
+
+	<g id="primer_svg" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;svg&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">inicializacija zunanjega elementa &lt;svg&gt;</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</tspan>
+				<tspan x="40" dy="25">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"</tspan>
+				<tspan x="40" dy="25">"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"&gt;</tspan>
+				<tspan x="40" dy="25">&lt;svg width="10cm" height="3cm" viewBox="0 0 100 30"</tspan>
+				<tspan x="40" dy="25">xmlns="http://www.w3.org/2000/svg"</tspan>
+				<tspan x="40" dy="25">xmlns:xlink="http://www.w3.org/1999/xlink"&gt;</tspan>
+				<tspan x="60" dy="25">...</tspan>
+				<tspan x="60" dy="25">...</tspan>
+				<tspan x="40" dy="25">&lt;/svg&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">glava svg datoteke:</tspan>
+				<tspan x="40" dy="25">najprej je prijavljena verzija <tspan fill="black">XML</tspan>, in nabor znakov</tspan>
+				<tspan x="40" dy="25">nato je prijavljen tip dokumenta torej <tspan fill="black">SVG</tspan> in njegov <tspan fill="black">DTD</tspan></tspan>
+			<tspan x="20" dy="35">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">width, height</tspan> - širina in višina vidne ploskve</tspan>
+				<tspan x="40" dy="25">če sta ta dva podatka izpuščena se svg odpre čez celotno okno</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">viewBox</tspan> - podaja transformacijo enot</tspan>
+		</text>
+	</g>
+
+	<g id="primer_symbol_use" display="none">
+		<text x="130" y="40" font-size="40">primer: elem. &lt;symbol&gt; in &lt;use&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda definira simbol (pravokotnik):</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;symbol id="simb_lik"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;rect x="10" y="10" width="100" height="150" rx="10" ry="15"</tspan>
+				<tspan x="60" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/symbol&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">ta koda pa uporabi simbol premaknjen na novo lego:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;use x="50" y="400" xlink:href="#simb_lik"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;use x="250" y="400" xlink:href="#simb_lik"/&gt;</tspan>
+			</tspan>
+		</text>
+		<symbol id="simb_lik">
+			<rect x="10" y="10" width="100" height="150" rx="10" ry="15" fill="red" stroke="blue" stroke-width="5"/>
+		</symbol>
+		<use x="50" y="400" xlink:href="#simb_lik"/>
+		<use x="250" y="400" xlink:href="#simb_lik"/>
+	</g>
+
+	<g id="primer_image" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;image&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda kliče sliko (jpg) iz zunanje datoteke:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;image transform="translate(250,400)" width="200" height="200"</tspan>
+				<tspan x="40" dy="25">xlink:href="mona.jpg"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">width, height</tspan> - širino in višino okvirja v katerem se bo izrisala slika</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">xlink:href</tspan> - podaja URL naslov slike</tspan>
+		</text>
+		<image transform="translate(550,225)" width="225" height="350" xlink:href="mona.jpg"/>
+	</g>
+
+	<g id="stran_4" display="none">
+		<text x="130" y="40" font-size="40">koordinatni sistem, transformacije</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- izhodiščna točka koordinatnega sistema je v levem zgornjem kotu</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">x</tspan> koordinata teče od leve proti desni</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">y</tspan> koordinata teče od zgoraj navzdol</tspan>
+			<tspan x="20" dy="35">- transformacijo koordinatnega sistema izvedemo s transform="..."</tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_transform')"> primer</tspan>
+			<tspan x="20" dy="35">opcije in lastnosti atributa <tspan fill="black">transform="..."</tspan>:</tspan>
+				<tspan x="40" dy="25">- atribut <tspan fill="black">transform</tspan> lahko pripišemo vsakemu izrisljivemu elementu</tspan>
+				<tspan x="40" dy="25">- <tspan fill="black">translate(tx [ty])</tspan> - premik v X in Y smeri, če ty ni podan je 0</tspan>
+				<tspan x="40" dy="25">- <tspan fill="black">scale(sx [sy])</tspan> - skaliranje v X in Y smeri, če sy ni podan je enak sx</tspan>
+				<tspan x="40" dy="25">- <tspan fill="black">rotate(kot [cx cy])</tspan> - rotacija za določen kot okoli koordinate (cx,cy)</tspan>
+				<tspan x="50" dy="25">če koordinate niso podane se izcede rotacija okoli izhodišča</tspan>
+				<tspan x="40" dy="25">- <tspan fill="black">skewX(kot)</tspan> - poševno skrivljenje v smeri X za določen kot</tspan>
+				<tspan x="40" dy="25">- <tspan fill="black">skewY(kot)</tspan> - poševno skrivljenje v smeri Y za določen kot</tspan>
+				<tspan x="40" dy="25">- <tspan fill="black">matrix(a b c d e f)</tspan> - transformacija z matriko elementov</tspan>
+			<tspan x="20" dy="35">- možno je tudi transformirati sliko katere velikost je definirana z <tspan fill="black">viewBox</tspan> v okvir</tspan>
+			<tspan x="20" dy="25">(<tspan fill="black">viewport</tspan>) definiran z atributi <tspan fill="black">x, y, width, height</tspan>. Ta transformacija nima fiksnega</tspan>
+			<tspan x="20" dy="25">razmerja temveč je to odvisno od velikosti slike in okvirja. Način okvirjanja še</tspan>
+			<tspan x="20" dy="25">dodatno opisuje atribut <tspan fill="black">preserveAspectRatio</tspan></tspan>
+		</text>
+	</g>
+
+	<g id="primer_transform" display="none">
+		<text x="130" y="40" font-size="40">primer: atribut transform="..."</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">na levi strani je narisan originalna puščica</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;path d="M100 480 L150 480 L150 580 L200 580 L200 480 L250 480 L175 405 z"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">na desni pa je narisana enaka puščica z naslednjimi transformacijami:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">transform="translate(250,0) scale(2,1) rotate(45 175,492.5)"</tspan>
+				<tspan x="40" dy="25">- transformacije se izvajajo od zadnje proti prvi</tspan>
+			</tspan>
+		</text>
+		<path d="M100 480 L150 480 L150 580 L200 580 L200 480 L250 480 L175 405 z" fill="red" stroke="blue" stroke-width="5"/>
+		<path transform="translate(250,0) scale(2,1) rotate(45 175,492.5)" d="M100 480 L150 480 L150 580 L200 580 L200 480 L250 480 L175 405 z" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="stran_5" display="none">
+		<text x="130" y="40" font-size="40">osnovni grafični elementi</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- pravokotnik <tspan fill="black">&lt;rect&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_rect')"> primer</tspan>
+			<tspan x="20" dy="25">- krog <tspan fill="black">&lt;circle&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_circle')"> primer</tspan>
+			<tspan x="20" dy="25">- elipsa <tspan fill="black">&lt;ellipse&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_ellipse')"> primer</tspan>
+			<tspan x="20" dy="25">- črta<tspan fill="black"> &lt;line&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_line')"> primer</tspan>
+			<tspan x="20" dy="25">- lomljena črta <tspan fill="black">&lt;polyline&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_polyline')"> primer</tspan>
+			<tspan x="20" dy="25">- lik iz lomljenih črt <tspan fill="black">&lt;polygon&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_polygon')"> primer</tspan>
+		</text>
+	</g>
+
+	<g id="primer_rect" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;rect&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše pravokotnik:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;rect x="50" y="400" width="100" height="150" rx="10" ry="15"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">x</tspan> - x koordinata pravokotnika</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">y</tspan> - y koordinata pravokotnika</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">width</tspan> - širina pravokotnika</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">height</tspan> - višina koordinata pravokotnika</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">rx</tspan> - radij x elipse, ki se izrisuje na vogalu pravokotnika</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">ry</tspan> - radij y elipse, ki se izrisuje na vogalu pravokotnika</tspan>
+		</text>
+		<rect x="50" y="400" width="100" height="150" rx="10" ry="15" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="primer_circle" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;circle&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše krog:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;circle cx="150" cy="450" r="100"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">cx</tspan> - x koordinata središča kroga</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">cy</tspan> - y koordinata središča kroga</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">r</tspan> - radij kroga</tspan>
+		</text>
+		<circle cx="150" cy="450" r="100" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="primer_ellipse" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;ellipse&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše elipso:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;ellipse cx="250" cy="450" rx="200" ry="100"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">cx</tspan> - x koordinata središča elipse</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">cy</tspan> - y koordinata središča elipse</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">rx</tspan> - radij x elipse</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">ry</tspan> - radij y elipse</tspan>
+		</text>
+		<ellipse cx="250" cy="450" rx="200" ry="100" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="primer_line" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;line&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše črto:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;line x1="50" y1="400" x2="600" y2="550"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">x1</tspan> - koordinata x točke 1</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">y1</tspan> - koordinata y točke 1</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">x2</tspan> - koordinata x točke 2</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">y2</tspan> - koordinata y točke 2</tspan>
+		</text>
+		<line x1="50" y1="400" x2="600" y2="550" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="primer_polyline" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;polyline&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše odprto lomljeno črto:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;polyline points="50,400 200,550 400,400 600,550"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">points</tspan> - našteti pari koordinat x in y za vsako točko lomljenke</tspan>
+		</text>
+		<polyline points="50,400 200,550 400,400 600,550" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="primer_polygon" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;polygon&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše lomljeno črto, ki se zapre v lik:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;polygon points="50,400 200,550 400,400 600,550"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">points</tspan> - našteti pari koordinat x in y za vsako točko lomljenke</tspan>
+		</text>
+		<polygon points="50,400 200,550 400,400 600,550" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="stran_6" display="none">
+		<text x="130" y="40" font-size="40">krivulje</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">z elementom <tspan fill="black">&lt;path&gt;</tspan> se lahko nariše:</tspan>
+				<tspan x="40" dy="25">- daljice, vodoravne in navpične črte</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_path_mlvh')"> primer</tspan>
+				<tspan x="40" dy="25">- eliptične odseke</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_path_a')"> primer</tspan>
+				<tspan x="40" dy="25">- kvadratne Bézier-jeve krivulje</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_path_qt')"> primer</tspan>
+				<tspan x="40" dy="25">- kubične Bézier-jeve krivulje</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_path_cs')"> primer</tspan>
+		</text>
+	</g>
+
+	<g id="primer_path_mlvh" display="none">
+		<text x="130" y="40" font-size="40">primer: ravne črte</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše lomljeno črto:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;path d="M50,450 L100,550 L200,450 h200 v100"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">d</tspan> - seznam točk in ukazov</tspan>
+			<tspan x="20" dy="25">ukazi:</tspan>
+			<tspan font-size="15">
+				<tspan x="40" dy="20"><tspan fill="black">M</tspan> - izhodišče, sledita absolutni vrednosti koordinat X in Y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">m</tspan> - izhodišče, sledita relativni vrednosti koordinat x in y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">L</tspan> - črta (line) do nove točke, sledita absolutni vrednosti koordinat X in Y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">l</tspan> - črta (line) do nove točke, sledita relativni vrednosti koordinat x in y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">V</tspan> - vertikalna črta do nove točke, sledi absolutna vrednost koordinate X</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">v</tspan> - vertikalna črta do nove točke, sledi relativna vrednost koordinate x</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">H</tspan> - horizontalna črta do nove točke, sledi absolutna vrednost koordinate Y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">h</tspan> - horizontalna črta do nove točke, sledi relativna vrednost koordinate y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">Z,z</tspan> - črta naj se zaključi v izhodišče</tspan>
+			</tspan>
+		</text>
+		<path d="M50,450 L100,550 L200,450 h200 v100" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="primer_path_a" display="none">
+		<text x="130" y="40" font-size="40">primer: odsek eliptične krivulje</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše odsek eliptične krivulje:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;path d="M319 571 L369 546 A28 28 -30 0,1 419 521 L469 496 A28 56 -30 0,1 519 471 L569 446 A28 84 -30 0,1 619 421 L669 396 A28 112 -30 0,1 719 371 L769 346"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">d</tspan> - seznam točk in ukazov</tspan>
+			<tspan x="20" dy="25">ukazi:</tspan>
+			<tspan font-size="15">
+				<tspan x="40" dy="20"><tspan fill="black">M</tspan> - izhodišče, sledita absolutni vrednosti koordinat X in Y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">m</tspan> - izhodišče, sledita relativni vrednosti koordinat x in y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">A</tspan> - sledijo X radij elipse, Y radij elipse,</tspan>
+				<tspan x="70" dy="20">kot za katerega je elipsa nagnjena glede na koordinatni sistem,</tspan>
+				<tspan x="70" dy="20">zastavica daljšega loka, zastavica zasuka</tspan>
+				<tspan x="70" dy="20">in koordinate končne točke</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">a</tspan> - sledijo relativne koordinate</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">Z,z</tspan> - črta naj se zaključi v izhodišče</tspan>
+			</tspan>
+		</text>
+		<path d="M319 571 L369 546 A28 28 -30 0,1 419 521 L469 496 A28 56 -30 0,1 519 471 L569 446 A28 84 -30 0,1 619 421 L669 396 A28 112 -30 0,1 719 371 L769 346"
+		fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="primer_path_qt" display="none">
+		<text x="130" y="40" font-size="40">primer: kvadratne Bézier-jeve krivulje</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše kvadratno Bézier-jevo krivuljo:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;path d="M200 530 Q415 530 415 450 Q625 450 625 530"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">d</tspan> - seznam točk in ukazov</tspan>
+			<tspan x="20" dy="25">ukazi:</tspan>
+			<tspan font-size="15">
+				<tspan x="40" dy="20"><tspan fill="black">M</tspan> - izhodišče, sledita absolutni vrednosti koordinat X in Y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">m</tspan> - izhodišče, sledita relativni vrednosti koordinat x in y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">Q</tspan> - sledita absolutni kordinati kontrolne in končne točke</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">q</tspan> - sledita relativni koordinati</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">T</tspan> - sledi absolutna koordinata končne točke</tspan>
+				<tspan x="70" dy="20">kontrolna točka je skozi začetno točko zrcaljena kontrolna točka prejšnje</tspan>
+				<tspan x="70" dy="20">krivulje ali izhodiščna točka, če prejšnji segment ni bil krivulja Q ali T</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">t</tspan> - sledijo relativne koordinate</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">Z,z</tspan> - črta naj se zaključi v izhodišče</tspan>
+			</tspan>
+		</text>
+		<path d="M200 530 Q415 530 415 450 Q625 450 625 530" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="primer_path_cs" display="none">
+		<text x="130" y="40" font-size="40">primer: kubične Bézier-jeve krivulje</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">naslednja koda izriše kubično Bézier-jevo krivuljo:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;path d="M200 530 C0 370 625 535 401 535 C115 530 625 365 626 530"</tspan>
+				<tspan x="40" dy="25">fill="red" stroke="blue" stroke-width="5"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">parametri pomenijo:</tspan>
+				<tspan x="40" dy="25"><tspan fill="black">d</tspan> - seznam točk in ukazov</tspan>
+			<tspan x="20" dy="25">ukazi:</tspan>
+			<tspan font-size="15">
+				<tspan x="40" dy="20"><tspan fill="black">M</tspan> - izhodišče, sledita absolutni vrednosti koordinat X in Y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">m</tspan> - izhodišče, sledita relativni vrednosti koordinat x in y</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">C</tspan> - sledijo absolutne kordinate dveh kontrolnih in končne točke</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">c</tspan> - sledijo relativne koordinate</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">S</tspan> - sledita absolutni koordinati druge kontrolne in končne točke</tspan>
+				<tspan x="70" dy="20">prva kontrolna točka je skozi začetno točko zrcaljena druga kontrolna točka</tspan>
+				<tspan x="70" dy="20">prejšnje krivulje ali izhodiščna točka, če prejšnji segment ni bil krivulja C ali S</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">s</tspan> - sledita relativni koordinati</tspan>
+				<tspan x="40" dy="20"><tspan fill="black">Z,z</tspan> - črta naj se zaključi v izhodišče</tspan>
+			</tspan>
+		</text>
+		<path d="M200 530 C0 370 625 535 401 535 C115 530 625 365 626 530" fill="red" stroke="blue" stroke-width="5"/>
+	</g>
+
+	<g id="stran_7" display="none">
+		<text x="130" y="40" font-size="40">tekst</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- osnovni element za prikaz teksta je <tspan fill="black">&lt;text&gt;</tspan></tspan>
+				<tspan x="40" dy="25">- omejuje zaključen tekstovni odsek</tspan>
+				<tspan x="40" dy="25">- določa se mu izhodiščni položaj</tspan>
+				<tspan x="40" dy="25">- določa se mu lastnosti pisave (font, barva, velikost)</tspan>
+			<tspan x="20" dy="25">- podelement teksta je <tspan fill="black">&lt;tspan&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_tspan')"> primer</tspan>
+				<tspan x="40" dy="25">- določa lahko nov izhodiščni položaj dela elementa <tspan fill="black">&lt;text&gt;</tspan></tspan>
+				<tspan x="40" dy="25">- nove lastnosti pisave (font, barva, velikost) dela elementa <tspan fill="black">&lt;text&gt;</tspan></tspan>
+				<tspan x="40" dy="25">- označeni del teksta lahko prekopiramo v vrstem redu določenim v <tspan fill="black">&lt;text&gt;</tspan></tspan>
+				<tspan x="50" dy="25">elementu, ne glede na izrisan položaj elementa <tspan fill="black">&lt;tspan&gt;</tspan></tspan>
+			<tspan x="20" dy="25">- podelement teksta je <tspan fill="black">&lt;tref&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_tref')"> primer</tspan>
+				<tspan x="40" dy="25">- s tem elementom uporabimo tekst, ki je bil definiran kakor simbol</tspan>
+				<tspan x="40" dy="25">- kakor referenca služi id atribut simbola</tspan>
+			<tspan x="20" dy="25">- podelement teksta je <tspan fill="black">&lt;textPath&gt;</tspan></tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_textPath')"> primer</tspan>
+				<tspan x="40" dy="25">- ta element omogoča nizanje teksta na linijo</tspan>
+			<tspan x="20" dy="50">Glavna slabost podpore SVG-ja za tekst je nezmožnost za avtomatično lomljenje</tspan>
+			<tspan x="20" dy="25">teksta znotraj nekega okvirja. Ta slabost naj bi bila odpravljena v verziji 1.1</tspan>
+		</text>
+	</g>
+
+	<g id="primer_tspan" display="none">
+		<text x="130" y="40" font-size="40">primer: &lt;text&gt; in &lt;tspan&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- tekstovne elemente opredeljujejo atributi:</tspan>
+			<tspan x="40" dy="35"><tspan fill="black">x,y</tspan> - absolutni položaj izrisa teksta, če je navedenih več vrednosti,</tspan>
+			<tspan x="80" dy="25">potem te podajajo položaje posameznih znakov</tspan>
+			<tspan x="40" dy="35"><tspan fill="black">dx,dy</tspan> - relatvni premik položaja glede na trenutni položaj konca teksta</tspan>
+			<tspan x="80" dy="25">če je navedenih več vrednosti, potem te podajajo relativne premike</tspan>
+			<tspan x="80" dy="25">posameznih znakov</tspan>
+			<tspan x="40" dy="35" rotate="10,10,10,10,10,10"><tspan fill="black">rotate</tspan> - obrne vsak znak posebej za naveden kot,</tspan>
+			<tspan x="80" dy="25">lahko so navedene vrednosti za vsak posamezen znak</tspan>
+			<tspan x="40" dy="35"><tspan fill="black">textLength</tspan> - podaja željeno dolžino teksta, namenjeno poravnavanju</tspan>
+			<tspan x="40" dy="35"><tspan fill="black">lengthAdjust</tspan> - prilagajamo lahko le dolžino presledkov ali celoten tekst</tspan>
+			<tspan x="40" dy="35"><tspan fill="black">text-anchor</tspan> - ima opcije <tspan fill="black">start</tspan>, <tspan fill="black">middle</tspan> in <tspan fill="black">end</tspan> za poravnavo teksta</tspan>
+			<tspan x="40" dy="35">...</tspan>
+		</text>
+	</g>
+
+	<g id="primer_tref" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;tref&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">če elementu <tspan fill="black">'text'</tspan> dodamo atribut <tspan fill="black">'id'</tspan>, lahko ta tekst ponovno uporabimo</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="35">&lt;defs&gt;</tspan>
+				<tspan x="50" dy="25">&lt;text id="kazalec_na_tekst"&gt;tekst klican z referenco&lt;text&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/defs&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="45">kasneje lahko te tekst kličemo z elementom 'tref'</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="35">&lt;text x="50" y="500" font-size="40" fill="red"&gt;</tspan>
+				<tspan x="50" dy="25">&lt;tref xlink:href="#kazalec_na_tekst"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/text&gt;</tspan>
+			</tspan>
+		</text>
+		<defs><text id="kazalec_na_tekst">tekst klican z referenco</text></defs>
+		<text x="50" y="500" font-size="40" fill="red">
+			<tref xlink:href="#kazalec_na_tekst"/>
+		</text>
+	</g>
+
+
+	<g id="primer_textPath" display="none">
+		<text x="130" y="40" font-size="40">primer: element &lt;textPath&gt;</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">element textPath ima naslednje atribute:</tspan>
+				<tspan x="20" dy="35">- <tspan fill="black">'startOffset'</tspan> navaja zamik od začetka poti</tspan>
+				<tspan x="20" dy="35">- <tspan fill="black">'method'</tspan> pove li naj bodo znaki nespremenjeni</tspan>
+				<tspan x="30" dy="25">ali preoblikovani glede na upogib krivulje</tspan>
+				<tspan x="20" dy="35">- <tspan fill="black">'spacing'</tspan> definira kako naj se izračunava presledek med znaki</tspan>
+				<tspan x="20" dy="35">- <tspan fill="black">'xlink:href'</tspan> kliče pot po kateri se bo vil tekst preko njenega <tspan fill="black">'id'</tspan></tspan>
+				<tspan x="30" dy="25">element <tspan fill="black">&lt;path&gt;</tspan> v katerem je definirana pot mora imeti <tspan fill="black">'id'</tspan></tspan>
+		</text>
+		<path id="path1" d="M52 542 C207 335 266 529 461 554 C529 563 607 438 720 437"
+		stroke-width="2" fill="none" stroke="red"/>
+		<text font-size="40" fill="black">
+			<textPath xlink:href="#path1">To je tekst, ki ga napeljemo na krivuljo</textPath>
+		</text>
+	</g>
+
+	<g id="stran_8" display="none">
+		<text x="130" y="40" font-size="40">fonti</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">SVG omogoča ustvarjanje in uporabo svojih lastnih fontov</tspan>
+			<tspan x="20" dy="35">prednosti:</tspan>
+				<tspan x="40" dy="25">- SVG se vedno prikazuje enako</tspan>
+			<tspan x="20" dy="25">- slabosti:</tspan>
+				<tspan x="40" dy="25">- font ni optimiziran za prikaz pri nizki resoluciji (hinting)</tspan>
+			<tspan x="20" dy="35">nov SVG font definira <tspan fill="black">&lt;font&gt;</tspan> element shranjen znotraj <tspan fill="black">&lt;defs&gt;</tspan></tspan>
+			<tspan x="30" dy="35">- najprej v glavi (element <tspan fill="black">'font-face'</tspan>) definiramo ime fonta in nekatere lastnosti</tspan>
+			<tspan x="30" dy="35">- nato za vsak znak posebej uporabimo element <tspan fill="black">'glyph'</tspan> z atributi</tspan>
+			<tspan x="40" dy="25"><tspan fill="black">unicode</tspan> - kjer podamo unicoda znak, ki ga želino izrisati</tspan>
+			<tspan x="40" dy="25"><tspan fill="black">horiz-adv-x</tspan> - ko podaja širino znaka</tspan>
+			<tspan x="40" dy="25"><tspan fill="black">d</tspan> - ki podaja krivuljo, ki se bo izrisala ob uporabi tega znaka</tspan>
+			<tspan x="40" dy="35">- z elementom <tspan fill="black">'missing-glyph'</tspan> definiramo slikico, ki se izriše,</tspan>
+			<tspan x="50" dy="25">če želimo uporabiti nedefiniran znak</tspan>
+			<tspan x="20" dy="40" fill="orange" onclick="odpri_primer('primer_font')"> primer</tspan>
+		</text>
+	</g>
+
+	<g id="primer_font" display="none">
+		<text x="130" y="40" font-size="40">primer: font</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">primer prikazuje font, ki sem ga sam poprej definiral</tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+		</text>
+		<text font-family="IzIhandwriten01" font-size="40" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="black">
+			<tspan x="10" y="200">ABCČDEFGHIJKLMNOPQRSŠTUVXYZŽ</tspan>
+			<tspan x="10" dy="50">abcčdefghijklmnopqrsštuvxyzž</tspan>
+			<tspan x="10" dy="50">0123456789(){}[]&lt;&gt;@&amp;÷:=!×\#-'"|.+;%/_,?*~°</tspan>
+		</text>
+	</g>
+
+	<g id="stran_9" display="none">
+		<text x="130" y="40" font-size="40">rob in ploskev</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">robu nekega lika zarisanega s črto lahko pripišemo naslednje lastnosti:</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_stroke')"> primer</tspan>
+				<tspan x="40" dy="25">- barvo (lahko gradient ali vzorec) z atributom <tspan fill="black">stroke="..."</tspan></tspan>
+				<tspan x="40" dy="25">- debelino z atributom <tspan fill="black">stroke-width="..."</tspan></tspan>
+				<tspan x="40" dy="25">- način spajanja z atributi <tspan fill="black">stroke-linecap</tspan>, <tspan fill="black">stroke-linejoin</tspan> in <tspan fill="black">stroke-miterlimit</tspan></tspan>
+				<tspan x="40" dy="25">- črtasto črto z atributoma <tspan fill="black">stroke-dasharray</tspan> in <tspan fill="black">stroke-dashoffset</tspan></tspan>
+				<tspan x="40" dy="25">- prosojnost z atributom <tspan fill="black">stroke-opacity="..."</tspan></tspan>
+			<tspan x="20" dy="35">krivulje <tspan fill="black">&lt;path&gt;</tspan> lahko imajo simbole na svojem koncu in začetku</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_marker')"> primer</tspan>
+				<tspan x="40" dy="25">- z elementom marker definiramo simbole, ki so lahko pripeti na črto</tspan>
+				<tspan x="40" dy="25">- uporabljeni atributi so <tspan fill="black">marker</tspan>, <tspan fill="black">marker-start</tspan>, <tspan fill="black">marker-mid</tspan> in <tspan fill="black">marker-end</tspan></tspan>
+			<tspan x="20" dy="35">ploskvi nekega lika omejenega z črto lahko pripišemo naslednje lastnosti:</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_fill')"> primer</tspan>
+				<tspan x="40" dy="25">- barvo (lahko gradient ali vzorec) z atributom <tspan fill="black">fill="..."</tspan></tspan>
+				<tspan x="40" dy="25">- način polnjenja ob prekrivanju <tspan fill="black">fill-rule="..."</tspan></tspan>
+				<tspan x="40" dy="25">- prosojnost z atributom <tspan fill="black">fill-opacity="..."</tspan></tspan>
+		</text>
+	</g>
+
+	<g id="primer_stroke" display="none">
+		<text x="130" y="40" font-size="40">primer: lastnosti roba</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- atribut <tspan fill="black">'stroke'</tspan> definira barvo roba ali polnjenje z vzorcem ali gradientom</tspan>
+			<tspan x="20" dy="35">- atribut <tspan fill="black">'stroke-opacity'</tspan> definira prosojnost roba</tspan>
+			<tspan x="20" dy="35">- atribut <tspan fill="black">'stroke-linecap'</tspan> definira zaključevanje črte</tspan>
+				<tspan x="25" dy="25"><tspan fill="black">'butt'</tspan> konec</tspan>
+				<tspan x="225"><tspan fill="black">'round'</tspan> konec</tspan>
+				<tspan x="425"><tspan fill="black">'square'</tspan> konec</tspan>
+			<tspan x="20" y="300">- atribut <tspan fill="black">'stroke-linejoin'</tspan> definira kotne spoje črt</tspan>
+				<tspan x="25" dy="25"><tspan fill="black">'miter'</tspan> spoj</tspan>
+				<tspan x="225"><tspan fill="black">'round'</tspan> spoj</tspan>
+				<tspan x="425"><tspan fill="black">'bevel'</tspan> spoj</tspan>
+			<tspan x="20" y="495">- atribut <tspan fill="black">'stroke-dasharray'</tspan> vsebuje niz dolžin črt in presledkov</tspan>
+			<tspan x="30" dy="25">če je navedeno liho stevilo dolžin, se nabor ponovi</tspan>
+			<tspan x="30" dy="25">- atribut <tspan fill="black">'stroke-dashoffset'</tspan> pove zamik v črtast vzorec, pri katerem se začne izris</tspan>
+				<tspan x="25" dy="25">primer: <tspan fill="black">stroke-dasharray="50 10 5 10"</tspan></tspan>
+		</text>
+		<g transform="translate(0,235)">
+			<path d="M 25 0 h 150" fill="none" stroke="blue" stroke-width="45" stroke-linecap="butt"/>
+			<path d="M 25 0 h 150" fill="none" stroke="red" stroke-width="2"/>
+			<path d="M 225 0 h 150" fill="none" stroke="blue" stroke-width="45" stroke-linecap="round"/>
+			<path d="M 225 0 h 150" fill="none" stroke="red" stroke-width="2"/>
+			<path d="M 425 0 h 150" fill="none" stroke="blue" stroke-width="45" stroke-linecap="square"/>
+			<path d="M 425 0 h 150" fill="none" stroke="red" stroke-width="2"/>
+		</g>
+		<g transform="translate(0,-130)">
+			<path d="M 25 575 L 100 500 L 175 575" fill="none" stroke="blue" stroke-width="45" stroke-linejoin="miter"/>
+			<path d="M 25 575 L 100 500 L 175 575" fill="none" stroke="red" stroke-width="2"/>
+			<path d="M 225 575 L 300 500 L 375 575" fill="none" stroke="blue" stroke-width="45" stroke-linejoin="round"/>
+			<path d="M 225 575 L 300 500 L 375 575" fill="none" stroke="red" stroke-width="2"/>
+			<path d="M 425 575 L 500 500 L 575 575" fill="none" stroke="blue" stroke-width="45" stroke-linejoin="bevel"/>
+			<path d="M 425 575 L 500 500 L 575 575" fill="none" stroke="red" stroke-width="2"/>
+		</g>
+		<path d="M 20 585 L 780 585" fill="none" stroke="blue" stroke-width="5" stroke-dasharray="50 10 5 10"/>
+	</g>
+
+	<g id="primer_marker" display="none">
+		<text x="130" y="40" font-size="40">primer: marker</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">definicija markerja:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;defs&gt;</tspan>
+				<tspan x="50" dy="25">&lt;marker id="Triangle" viewBox="0 0 10 10" refX="0" refY="5"</tspan>
+				<tspan x="50" dy="25">markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;path d="M 0 0 L 10 5 L 0 10 z" /&gt;</tspan>
+				<tspan x="50" dy="25">&lt;/marker&gt;</tspan>
+				<tspan x="40" dy="25">&lt;defs/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">kasneje je marker uporabljen na črti:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;path d="M 50 400 L 200 400 L 300 500"</tspan>
+				<tspan x="40" dy="25">fill="none" stroke="blue" stroke-width="5"</tspan>
+				<tspan x="40" dy="25">marker-end="url(#Triangle)"/&gt;</tspan>
+			</tspan>
+		</text>
+		<defs>
+			<marker id="Triangle" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto">
+				<path d="M 0 0 L 10 5 L 0 10 z" />
+			</marker>
+		</defs>
+		<path d="M 50 400 L 200 400 L 300 500" fill="none" stroke="blue" stroke-width="5" marker-end="url(#Triangle)"/>
+	</g>
+
+	<g id="primer_fill" display="none">
+		<text x="130" y="40" font-size="40">primer: lastnosti ploskve</text>
+		<text x="20" y="80">
+			<tspan x="10" dy="25">- atribut <tspan fill="black">'fill'</tspan> definira barvo ploskve ali polnjenje z vzorcem ali gradientom</tspan>
+			<tspan x="10" dy="35">- atribut <tspan fill="black">'fill-opacity'</tspan> definira prosojnost ploskve</tspan>
+			<tspan x="10" dy="35">- atribut <tspan fill="black">'fill-rule'</tspan> definira način polnjenja ob prekrivanju ploskve same s seboj</tspan>
+			<tspan x="20" dy="25">Za neko točko je potrebno določiti, ali je znotraj ploskve ali ni. Od te točke proti</tspan>
+			<tspan x="20" dy="25">neskončnosti se povleče premico in se šteje, kolikokrat rob ploskve seka to črto.</tspan>
+			<tspan x="10" y="300">- <tspan fill="black">fill-rule="nonzero"</tspan></tspan>
+			<tspan x="20" dy="25">Presečišče v eni smeri ima</tspan>
+			<tspan x="20" dy="25">vrednost +1 presečišče v</tspan>
+			<tspan x="20" dy="25">drugi smeri pa -1. Če je</tspan>
+			<tspan x="20" dy="25">vsota vrednosti različna</tspan>
+			<tspan x="20" dy="25">od nič, je točka znotraj.</tspan>
+			<tspan x="10" y="470">- <tspan fill="black">fill-rule="evenodd"</tspan></tspan>
+			<tspan x="20" dy="25">Točka je znotraj,</tspan>
+			<tspan x="20" dy="25">če rob seka črto liho krat.</tspan>
+		</text>
+		<g fill-rule="nonzero" fill="red" stroke="blue" stroke-width="5">
+			<path d="M364 285 C481 285 360 499 303 394 C245 289 489 291 428 394 C366 497 246 285 364 285 z"/>
+			<path d="M777 299 C718 258 634 370 653 397 C675 441 774 426 776 390 C779 302 637 289 623 307 C595 340 753 339 734 384 C725 402 686 404 689 376 C693 332 802 343 776 298 z"/>
+			<path d="M535 396 C629 397 475 363 518 322 C612 231 666 425 535 425 C405 425 458 231 551 324 C589 362 441 396 535 396 z"/>
+		</g>
+		<g fill-rule="evenodd" fill="red" stroke="blue" stroke-width="5">
+			<path d="M360 446 C477 446 356 660 299 555 C241 450 485 452 424 555 C362 658 242 446 360 446 z"/>
+			<path d="M777 456 C718 415 634 527 653 554 C675 598 774 583 776 547 C779 459 637 446 623 464 C595 497 753 496 734 541 C725 559 686 561 689 533 C693 489 802 500 776 455 z"/>
+			<path d="M531 559 C625 559 471 525 514 484 C608 393 662 587 531 587 C401 587 454 393 547 486 C585 524 437 558 531 558 z"/>
+		</g>
+	</g>
+
+	<g id="stran_10" display="none">
+		<text x="130" y="40" font-size="40">nastavljanje vidljivosti</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">lastnost <tspan fill="black">opacity="..."</tspan>:</tspan>
+				<tspan x="40" dy="25">- dovoljene vrednosti so med 0.0 in 1.0</tspan>
+				<tspan x="40" dy="25">- definira prosojnost za poljuben izrisljiv element</tspan>
+				<tspan x="40" dy="25">- uporabna je za definiranje prosojnosti grup</tspan>
+			<tspan x="20" dy="35">lastnost visibility:</tspan>
+				<tspan x="40" dy="25">- ob vrednosti <tspan fill="black">visibility="visible"</tspan> so elementi izrisani</tspan>
+				<tspan x="40" dy="25">- ob vrednosti <tspan fill="black">visibility="hidden"</tspan> se elementi ne izrišejo</tspan>
+				<tspan x="40" dy="25">ampak tekst zasede prostor </tspan>
+			<tspan x="20" dy="35">lastnost display:</tspan>
+				<tspan x="40" dy="25">- če je <tspan fill="black">display="none"</tspan>, potem element ali grupa niso izrisani, ne morejo</tspan>
+				<tspan x="50" dy="25">prožiti dogodka, tekst ne zaseda prostora in ga ni možno fokusirati...</tspan>
+				<tspan x="50" dy="25">običajna vrednost je <tspan fill="black">display="inline"</tspan></tspan>
+		</text>
+	</g>
+
+	<g id="stran_11" display="none">
+		<text x="130" y="40" font-size="40">vzorci in gradienti</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">rob ali ploskev je možno zapolniti z vzorci</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_patteren')"> primer</tspan>
+				<tspan x="40" dy="25"></tspan>
+				<tspan x="40" dy="25"></tspan>
+				<tspan x="40" dy="25"></tspan>
+			<tspan x="20" dy="45">rob ali ploskev je možno zapolniti s prelivajočimi barvami</tspan>
+				<tspan x="40" dy="25">SVG 1.0 pozna le:</tspan>
+				<tspan x="40" dy="25">- linearne gradiente</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_linearni_gradient')"> primer</tspan>
+				<tspan x="40" dy="25">- radialne gradiente</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_radialni_gradient')"> primer</tspan>
+			<tspan x="20" dy="45">definicije vzorcev in gradientov imenujemo server barvila (<tspan fill="black">paint server</tspan>)</tspan>
+			<tspan x="20" dy="25">paint server mora biti definiran znotraj elementa <tspan fill="black">&lt;defs&gt;</tspan></tspan>
+			<tspan x="20" dy="25">uporabimo ga preko <tspan fill="black">'id'</tspan> elementa z naslednjima metodama:</tspan>
+			<tspan x="20" dy="25">- <tspan fill="black">stroke="url(#paint_server_id)"</tspan> za rob</tspan>
+			<tspan x="20" dy="25">- <tspan fill="black">fill="url(#paint_server_id)"</tspan> za polnilo</tspan>
+		</text>
+	</g>
+
+	<g id="primer_patteren" display="none">
+		<text x="130" y="40" font-size="40">primer: vzorci</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">definicija vzorca</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;pattern id="Elephant" width="50" height="40"</tspan>
+				<tspan x="40" dy="25">patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;g fill="#ffc0c0" stroke="#000000" stroke-width="1"&gt;</tspan>
+				<tspan x="80" dy="25">&lt;rect x="0" y="0" width="50" height="40" stroke="none" fill="#ffff00"/&gt;</tspan>
+				<tspan x="80" dy="25">&lt;path d="M13 36 C13 36 15 20 11 17 C8 15 8 31 6 31 C5 31 7 15 .... "/&gt;</tspan>
+				<tspan x="80" dy="25">&lt;path d="M29 11 C11 35 13 -11 29 7 C29 7 27 8 29 11 z"/&gt;</tspan>
+				<tspan x="60" dy="25">&lt;/g&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/pattern&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">uporaba vzorca</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;path d="M460 320 L460 580 L600 580</tspan>
+				<tspan x="40" dy="25">L620 450 L640 580 L780 580 L780 320 z"</tspan>
+				<tspan x="40" dy="25">id="brgeše" stroke="#ffba41"</tspan>
+				<tspan x="40" dy="25">fill="url(#Elephant)" stroke-width="5"/&gt;</tspan>
+			</tspan>
+		</text>
+	<defs>
+		<pattern id="Elephant" width="50" height="40" patternUnits="userSpaceOnUse"
+			patternContentUnits="userSpaceOnUse">
+			<g fill="#ffc0c0" stroke="#000000" stroke-width="1">
+				<rect x="0" y="0" width="50" height="40" stroke="none" fill="#ffff00"/>
+				<path d="M13 36 C13 36 15 20 11 17 C8 15 8 31 6 31 C5 31 7 15 11 14 C15 13 19 12 21 10 C23 9 25 6 29 5 C37 2 39 8 38 13 C38 15 43 22 44 23 C49 34 37 36 38 33 C38 30 45 35 43 26 C42 24 36 15 35 16 C34 17 36 20 37 20 C36 20 32 21 31 23 C30 26 31 35 30 36 L28 36 C27 34 28 25 27 25 C25 24 19 23 18 25 C17 27 18 35 17 36 zM31 10 C32 11 33 9 32 8 C31 7 30 9 31 10 z"/>
+				<path d="M29 11 C11 35 13 -11 29 7 C29 7 27 8 29 11 z"/>
+			</g>
+		</pattern>
+	</defs>
+	<path d="M460 320 L460 580 L600 580 L620 450 L640 580 L780 580 L780 320 z" id="brgeše" stroke="#ffba41" fill="url(#Elephant)" stroke-width="5"/>
+
+	</g>
+
+	<g id="primer_linearni_gradient" display="none">
+		<text x="130" y="40" font-size="40">primer: linearni gradient</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">definicija gradienta</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;linearGradient id="blue-yellow-red" x1="0%" y1="0%" x2="100%" y2="100%"</tspan>
+				<tspan x="40" dy="25">spreadMethod="pad" gradientUnits="objectBoundingBox"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;stop stop-color="blue" offset="0%" stop-opacity="1"/&gt;</tspan>
+				<tspan x="60" dy="25">&lt;stop stop-color="yellow" offset="50%" stop-opacity="1"/&gt;</tspan>
+				<tspan x="60" dy="25">&lt;stop stop-color="red" offset="100%" stop-opacity="1"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/linearGradient&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">uporaba gredienta</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;rect x="30" y="450" width="740" height="120" stroke-width="40" rx="40" ry="40"</tspan>
+				<tspan x="40" dy="25">stroke="url(#blue-yellow-red)" fill="url(#white-black)"/&gt;</tspan>
+			</tspan>
+		</text>
+		<defs>
+			<radialGradient id="white-black" cx="50%" cy="50%" r="50%" fx="50%" fy="50%"
+				spreadMethod="pad" gradientUnits="objectBoundingBox">
+				<stop stop-color="#ffffff" offset="0%" stop-opacity="0"/>
+				<stop stop-color="#000000" offset="100%" stop-opacity="1"/>
+			</radialGradient>
+			<linearGradient id="blue-yellow-red" x1="0%" y1="0%" x2="100%" y2="100%"
+				spreadMethod="pad" gradientUnits="objectBoundingBox">
+				<stop stop-color="blue" offset="0%" stop-opacity="1"/>
+				<stop stop-color="yellow" offset="50%" stop-opacity="1"/>
+				<stop stop-color="red" offset="100%" stop-opacity="1"/>
+			</linearGradient>
+		</defs>
+		<rect x="30" y="450" width="740" height="120" stroke-width="40" rx="40" ry="40" stroke="url(#blue-yellow-red)" fill="url(#white-black)"/>
+	</g>
+
+	<g id="primer_radialni_gradient" display="none">
+		<text x="130" y="40" font-size="40">primer: radialni gradient</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">definicija gradienta</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;radialGradient id="white-black" cx="50%" cy="50%" r="50%" fx="50%" fy="50%"</tspan>
+				<tspan x="40" dy="25">spreadMethod="pad" gradientUnits="objectBoundingBox"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;stop stop-color="#ffffff" offset="0%" stop-opacity="0"/&gt;</tspan>
+				<tspan x="60" dy="25">&lt;stop stop-color="#000000" offset="100%" stop-opacity="1"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/radialGradient&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">uporaba gredienta</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;rect x="30" y="450" width="740" height="120" stroke-width="40" rx="40" ry="40"</tspan>
+				<tspan x="40" dy="25">stroke="url(#blue-yellow-red)" fill="url(#white-black)"/&gt;</tspan>
+			</tspan>
+		</text>
+		<rect x="30" y="450" width="740" height="120" stroke-width="40" rx="40" ry="40" stroke="url(#blue-yellow-red)" fill="url(#white-black)"/>
+	</g>
+
+	<g id="stran_12" display="none">
+		<text x="130" y="40" font-size="40">obrezovanje in maskiranje</text>
+		<text x="20" y="80">
+			<tspan x="15" dy="25">- obrezovanje okna:</tspan>
+			<tspan x="20" dy="25">atributa <tspan fill="black">'overflow'</tspan> in <tspan fill="black">'clip'</tspan> omogočata obrezovanje celotnega okna <tspan fill="black">'viewport'</tspan> z</tspan>
+			<tspan x="20" dy="25">obliko pravokotnika, ki ga določa okno pravokotnikom</tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_viewport_clipping')"> primer</tspan>
+			<tspan x="15" dy="50">- obrezovanje po obliki:</tspan>
+			<tspan x="20" dy="25">lahko pa z elementom <tspan fill="black">'clipPath'</tspan> definiramo rob obrezovanja poljubne oblike, ta</tspan>
+			<tspan x="20" dy="25">element lahko vsebuje elemente <tspan fill="black">'path'</tspan>, <tspan fill="black">'text'</tspan>, osnovne oblike (<tspan fill="black">'circle'</tspan>, <tspan fill="black">'rect'</tspan>...)</tspan>
+			<tspan x="20" dy="25">in element <tspan fill="black">'use'</tspan>, ki se neposredno nanaša na prej naštete</tspan>
+			<tspan x="20" dy="35">elementi znotraj <tspan fill="black">'clipPath'</tspan> elementa skupaj tvorijo ploskev-masko, če nek izrisljiv</tspan>
+			<tspan x="20" dy="25">objekt z atributom <tspan fill="black">'clip-path'</tspan> kliče to masko, se od njega izriše le tisti del, ki je</tspan>
+			<tspan x="20" dy="25">znotraj te ploskve-maske</tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_clipping')"> primer</tspan>
+			<tspan x="15" dy="50">- maskiranje:</tspan>
+			<tspan x="20" dy="25">Kakor masko lahko uporabimo katerikoli grafični element ali vsebnik <tspan fill="black">g</tspan>. Kolikšen</tspan>
+			<tspan x="20" dy="25">del slike se bo videlo skozi masko, je odvisno od luminiscence kanalov RGB in</tspan>
+			<tspan x="20" dy="25">prosojnosti kanala A (alfa).</tspan>
+			<tspan fill="orange" onclick="odpri_primer('primer_masking')"> primer</tspan>
+		</text>
+	</g>
+
+	<g id="primer_viewport_clipping" display="none">
+		<text x="130" y="40" font-size="40">primer: obrezovanje okna</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">primer z neobrezanim oknom:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;svg x="50" y="450" width="100" height="100" overflow="visible"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;circle cx="50" cy="50" r="60" stroke="none" fill="red"/&gt;</tspan>
+				<tspan x="60" dy="25">&lt;rect x="0" y="0" width="100" height="100" fill="none" stroke="blue" stroke-width="1"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/svg&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">primer z obrezanim oknom:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;svg x="50" y="450" width="100" height="100" overflow="hidden"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;circle cx="50" cy="50" r="60" stroke="none" fill="red"/&gt;</tspan>
+				<tspan x="60" dy="25">&lt;rect x="0" y="0" width="100" height="100" fill="none" stroke="blue" stroke-width="1"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/svg&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="45">opomba: pravokotnik je narisan le za pomoč</tspan>
+		</text>
+
+		<svg x="50" y="450" width="100" height="100" overflow="visible">
+			<circle cx="50" cy="50" r="60" stroke="none" fill="red"/>
+			<rect x="0" y="0" width="100" height="100" fill="none" stroke="blue" stroke-width="1"/>
+		</svg>
+		<svg x="250" y="450" width="100" height="100" overflow="hidden">
+			<circle cx="50" cy="50" r="60" stroke="none" fill="red"/>
+			<rect x="0" y="0" width="100" height="100" fill="none" stroke="blue" stroke-width="1"/>
+		</svg>
+	</g>
+
+	<g id="primer_clipping" display="none">
+		<text x="130" y="40" font-size="40">primer: obrezovanje po obliki</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">oblika ploskve obrezovanja:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;path d="M50 450 75 500 50 550 100 525 150 550 125 500 150 450 100 475z"</tspan>
+				<tspan x="40" dy="25">id="zvezda" fill="none" stroke="blue" stroke-width="1"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">definicija ploskve obrezovanja:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;clipPath id="obrezovalna_oblika"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;use xlink:href="#zvezda"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/clipPath&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">uporaba obrezovalne ploskve:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;g transform="translate(200)"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;circle cx="100" cy="500" r="50" stroke="none" fill="red"</tspan>
+				<tspan x="60" dy="25">clip-path="url(#obrezovalna_oblika)"/&gt;</tspan>
+				<tspan x="60" dy="25">&lt;use xlink:href="#zvezda"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/g&gt;</tspan>
+			</tspan>
+		</text>
+		<clipPath id="obrezovalna_oblika">
+			<use xlink:href="#zvezda"/>
+		</clipPath>
+		<circle cx="100" cy="500" r="50" stroke="none" fill="red"/>
+		<g transform="translate(200)">
+			<circle cx="100" cy="500" r="50" stroke="none" fill="red" clip-path="url(#obrezovalna_oblika)"/>
+			<use xlink:href="#zvezda"/>
+		</g>
+		<path id="zvezda" d="M50 450 75 500 50 550 100 525 150 550 125 500 150 450 100 475z" fill="none" stroke="blue" stroke-width="1"/>
+	</g>
+
+	<g id="primer_masking" display="none">
+		<text x="130" y="40" font-size="40">primer: maskiranje</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">definicija za masko (znotraj <tspan fill="black">&lt;defs&gt;</tspan>):</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;radialGradient id="mask_grad" gradientUnits="userSpaceOnUse" cx="400"</tspan>
+				<tspan x="40" dy="25">cy="500" r="400"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;stop offset="0" stop-color="white" stop-opacity="1"/&gt;</tspan>
+				<tspan x="60" dy="25">&lt;stop offset="1" stop-color="white" stop-opacity="0"&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/radialGradient&gt;</tspan>
+				<tspan x="40" dy="25">&lt;mask id="Mask" maskUnits="userSpaceOnUse" x="0" y="400" width="800"</tspan>
+				<tspan x="40" dy="25">height="200"&gt;</tspan>
+				<tspan x="60" dy="25">&lt;rect x="0" y="400" width="800" height="200" fill="url(#mask_grad)"/&gt;</tspan>
+				<tspan x="40" dy="25">&lt;/mask&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="35">uporaba maske:</tspan>
+			<tspan fill="black">
+				<tspan x="40" dy="25">&lt;text x="20" y="425" mask="url(#Mask)"&gt; ... &lt;/text&gt;</tspan>
+			</tspan>
+		</text>
+		<defs>
+			<radialGradient id="mask_grad" gradientUnits="userSpaceOnUse" cx="400" cy="500" r="400">
+				<stop offset="0" stop-color="white" stop-opacity="1"/>
+				<stop offset="1" stop-color="white" stop-opacity="0"/>
+			</radialGradient>
+			<mask id="Mask" maskUnits="userSpaceOnUse" x="0" y="400" width="800" height="200">
+				<rect x="0" y="400" width="800" height="200" fill="url(#mask_grad)"/>
+			</mask>
+		</defs>
+		<text x="20" y="425" mask="url(#Mask)">
+			<tspan x="20" dy="25">Tekst, ki ga maskiramo. Tekst, ki ga maskiramo. Tekst, ki ga maskiramo.</tspan>
+			<tspan x="20" dy="25">Tekst, ki ga maskiramo. Tekst, ki ga maskiramo. Tekst, ki ga maskiramo.</tspan>
+			<tspan x="20" dy="25">Tekst, ki ga maskiramo. Tekst, ki ga maskiramo. Tekst, ki ga maskiramo.</tspan>
+			<tspan x="20" dy="25">Tekst, ki ga maskiramo. Tekst, ki ga maskiramo. Tekst, ki ga maskiramo.</tspan>
+			<tspan x="20" dy="25">Tekst, ki ga maskiramo. Tekst, ki ga maskiramo. Tekst, ki ga maskiramo.</tspan>
+			<tspan x="20" dy="25">Tekst, ki ga maskiramo. Tekst, ki ga maskiramo. Tekst, ki ga maskiramo.</tspan>
+		</text>
+	</g>
+
+	<g id="stran_13" display="none">
+		<text x="130" y="40" font-size="40">filtri</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">to poglavje je zame prezahtevno,</tspan>
+			<tspan x="20" dy="25">nekaj primerov lahko najdete na naslednjem naslovu:</tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+		</text>
+	</g>
+
+	<g id="stran_14" display="none">
+		<text x="130" y="40" font-size="40">iterakcija</text>
+		<text x="20" y="70">
+			<tspan x="20" dy="25">- dogodki, ki jih proži kazalec:</tspan>
+				<tspan x="40" dy="25" fill="black">click, mousedown, mouseup, mouseover, mousemove, mouseout</tspan>
+				<tspan fill="orange" onclick="odpri_primer('primer_iteraction')"> primer</tspan>
+			<tspan x="20" dy="25">- splošni dogodki uporabniškega umesnika</tspan>
+				<tspan x="40" dy="25" fill="black">focusin, focusout, activate</tspan>
+				<tspan x="40" dy="25" fill="black">SVGLoad, SVGUnload, SVGAbort, SVGError, SVGResize, SVGScroll, SVGZoom</tspan>
+			<tspan x="20" dy="25">- dogodki manipulacije z XML DOM</tspan>
+				<tspan x="40" dy="25" fill="black">DOMSubtreeModified, DOMNodeInserted, DOMNodeRemoved,</tspan>
+				<tspan x="40" dy="25" fill="black">DOMNodeRemovedFromDocument, DOMNodeInsertedIntoDocument,</tspan>
+				<tspan x="40" dy="25" fill="black">DOMAttrModified, DOMCharacterDataModified</tspan>
+			<tspan x="20" dy="25">- dogodki povezani z animacijo</tspan>
+				<tspan x="40" dy="25" fill="black">beginEvent, endEvent, repeatEvent, </tspan>
+			<tspan x="20" dy="30">- lastnost <tspan fill="black">pointer-events</tspan></tspan>
+				<tspan x="40" dy="25">omogoča določitev kateri del elementa lahko proži dogodek (ploskev, rob,</tspan>
+				<tspan x="40" dy="25">vidno, vse, nič...)</tspan>
+			<tspan x="20" dy="30">- atribut <tspan fill="black">cursor</tspan></tspan>
+				<tspan x="40" dy="25">omogoča izbiro kurzorja, ki se kaže nad določenim elementom, na voljo se</tspan>
+				<tspan x="40" dy="25">kurzorji iz nabora grafičnega okolja (puščica, ura, prst, križec, ...)</tspan>
+			<tspan x="20" dy="30">- element <tspan fill="black">cursor</tspan></tspan>
+				<tspan x="40" dy="25">omogoča definiranje novih kurzorjev neodvisnih od delovne platforme</tspan>
+				<tspan x="40" dy="25">naprimer preko PNG slik</tspan>
+		</text>
+	</g>
+
+	<g id="primer_iteraction" display="none">
+		<text x="130" y="40" font-size="40">primer: iterakcija z miško</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">definicija kroga, ki proži dogodke</tspan>
+			<tspan fill="black">
+				<tspan x="30" dy="25">&lt;circle id="blue" cx="300" cy="150" r="140" stroke="blue" fill="red"</tspan>
+				<tspan x="30" dy="25">onmouseover="log('mouseover')" onmouseout="log('mouseout')"</tspan>
+				<tspan x="30" dy="25">onmouseup="log('mouseup')" onmousedown="log('mousedown')"</tspan>
+				<tspan x="30" dy="25">onclick="log('click')" onactivate="log('activate')"/&gt;</tspan>
+			</tspan>
+			<tspan x="20" dy="25">skripta, ki se zaganja ob proženju dogodkov (znotraj <tspan fill="black">&lt;script&gt;</tspan>): </tspan>
+			<tspan fill="black">
+				<tspan x="30" dy="25">var log_counter=0;</tspan>
+				<tspan x="30" dy="25">function log(text) {</tspan>
+				<tspan x="40" dy="25">log_counter++;</tspan>
+				<tspan x="40" dy="25">var event = document.getElementById('event_log');</tspan>
+				<tspan x="40" dy="25">var new_event=event.cloneNode(1);</tspan>
+				<tspan x="40" dy="25">new_event.getFirstChild().setData(log_counter+'.) '+text);</tspan>
+				<tspan x="40" dy="25">event.parentNode.appendChild(new_event); }</tspan>
+			</tspan>
+		</text>
+		<script> <![CDATA[
+			var log_counter=0;
+			function log(text) {
+				log_counter++;
+				var event = document.getElementById('event_log');
+				var new_event=event.cloneNode(1);
+				new_event.getFirstChild().setData(log_counter+'.) '+text);
+				new_event.setAttribute('id','event_log_'+log_counter);
+				if (log_counter>33)
+					event.parentNode.removeChild(document.getElementById('event_log_'+(log_counter-33)));
+//					event.parentNode.setAttribute('y',event.parentNode.getAttribute('y')-event.getAttribute('dy'));
+				event.parentNode.appendChild(new_event);
+			}
+		]]></script>
+		<circle id="blue" cx="100" cy="500" r="80" stroke="blue" fill="red"
+		onmouseover="log('mouseover')" onmouseout="log('mouseout')"
+		onmouseup="log('mouseup')" onmousedown="log('mousedown')"
+		onclick="log('click')" onactivate="log('activate')"/>
+		<text y="80" font-size="14" fill="green">
+			<tspan id="event_log" x="670" dy="15">Event log:</tspan>
+		</text>
+	</g>
+
+	<g id="stran_15" display="none">
+		<text x="130" y="40" font-size="40">povezave</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- SVG uporablja za posezave element <tspan fill="black">&lt;a&gt;</tspan> tako kakor XHTML</tspan>
+			<tspan x="20" dy="35">- povezave v fragmente SVG strani</tspan>
+				<tspan x="40" dy="25"></tspan>
+				<tspan x="40" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+		</text>
+	</g>
+
+	<g id="stran_16" display="none">
+		<text x="130" y="40" font-size="40">animacija</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">za animacijo v SVG je uporabljen standard SMIL animation</tspan>
+				<tspan x="40" dy="25">- animirati je mogoče skoraj poljubne atribute</tspan>
+				<tspan x="40" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+		</text>
+	</g>
+
+	<g id="stran_17" display="none">
+		<text x="130" y="40" font-size="40">skriptanje</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">???</tspan>
+				<tspan x="40" dy="25"></tspan>
+				<tspan x="40" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+		</text>
+	</g>
+
+	<g id="stran_18" display="none">
+		<text x="130" y="40" font-size="40">SVG DOM</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">???</tspan>
+				<tspan x="40" dy="25"></tspan>
+				<tspan x="40" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan x="20" dy="25"></tspan>
+		</text>
+	</g>
+
+	<g id="stran_19" display="none">
+		<text x="130" y="40" font-size="40">programska orodja</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- Adobe SVG Viewer</tspan>
+			<tspan fill="red"><a xlink:href="http://www.adobe.com/svg/" target="_blank">www.adobe.com/svg/</a></tspan>
+				<tspan x="40" dy="25">- omogoča ogled statičnih in animiranih SVG strani v brskalniku</tspan>
+				<tspan x="40" dy="25">- podpira brskalnike Internet Explorer, Netscape in Mozilla (linux)</tspan>
+			<tspan x="20" dy="25">- Jasc Software - WebDraw</tspan>
+			<tspan fill="red"><a xlink:href="http://www.jasc.com/products/webdraw/" target="_blank">www.jasc.com/products/webdraw</a></tspan>
+				<tspan x="40" dy="25">- orodje za risanje neposredno v formatu SVG</tspan>
+				<tspan x="40" dy="25">- omogoča nekaj osnovnega dela z animacijami</tspan>
+			<tspan x="20" dy="25">- Adobe - Illustrator 10</tspan>
+			<tspan fill="red"><a xlink:href="http://www.adobe.com/products/illustrator/main.html" target="_blank">www.adobe.com/products/illustrator/main.html</a></tspan>
+				<tspan x="40" dy="25">- risanje v lastnem formatu, omogoča pa uvoz in izvoz SVG datotek</tspan>
+			<tspan x="20" dy="25">- Corel Draw</tspan>
+			<tspan fill="red"><a xlink:href="http://www.corel.com/" target="_blank">www.corel.com</a></tspan>
+				<tspan x="40" dy="25">- risanje v lastnem formatu, omogoča pa uvoz in izvoz SVG datotek</tspan>
+			<tspan x="20" dy="25">- cr2v</tspan>
+			<tspan fill="red"><a xlink:href="http://www.celinea.com/" target="_blank">www.celinea.com</a></tspan>
+				<tspan x="40" dy="25">- pretvarja iz rasterskih slik v SVG</tspan>
+			<tspan x="20" dy="25">- Batik (Apache group)</tspan>
+			<tspan fill="red"><a xlink:href="http://xml.apache.org/batik/svgviewer.html" target="_blank">xml.apache.org/batik/svgviewer.html</a></tspan>
+				<tspan x="40" dy="25">- brskalnik napisan v javi, omogoča ogled statičnih SVG strani</tspan>
+			<tspan x="20" dy="25">- X-Smiles</tspan>
+			<tspan fill="red"><a xlink:href="http://www.xsmiles.org/" target="_blank">www.xsmiles.org</a></tspan>
+				<tspan x="40" dy="25">- brskalnik napisan v javi, omogoča ogled statičnih SVG strani</tspan>
+			<tspan x="20" dy="25">- Sodipodi</tspan>
+			<tspan fill="red"><a xlink:href="http://sodipodi.sourceforge.net/" target="_blank">sodipodi.sourceforge.net</a></tspan>
+				<tspan x="40" dy="25">- SVG editor za linux</tspan>
+			<tspan x="20" dy="35">Za ostalo glej</tspan>
+			<tspan fill="red"><a xlink:href="http://www.w3.org/Graphics/SVG/SVG-Implementations.htm8" target="_blank">www.w3.org/Graphics/SVG/SVG-Implementations.htm8</a></tspan>
+		</text>
+	</g>
+
+	<g id="stran_20" display="none">
+		<text x="130" y="40" font-size="40">učenje jezika SVG</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- zaenkrat so knjige o SVG redke in pri nas težje dostopne</tspan>
+			<tspan x="20" dy="25">- za uvod v spoznavanje jezika so primerne predstavitve, kakor je ta</tspan>
+			<tspan x="20" dy="25">- za zagon učenja pisanja SVG se izplača pogledati primere na strani Adobe</tspan>
+			<tspan x="20" dy="25">- za risanje v jeziku SVG so uporabni WebDraw, Ilustrator in Corel Draw</tspan>
+			<tspan x="20" dy="25">- za resno delo je potrebno čitanje definicije jezika</tspan>
+			<tspan x="20" dy="25">- dobrodošla je pomoč, ki jo nudijo debate na spletu</tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://grups.yahoo.com/svg-developers/" target="_blank">
+			grups.yahoo.com/svg-developers/</a></tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://lists.w3.org/svg/" target="_blank">
+		lists.w3.org/svg/</a></tspan>
+			<tspan x="30" dy="25" fill="red"><a xlink:href="http://" target="_blank">
+			www.adobe.com/</a></tspan>
+		</text>
+	</g>
+
+	<g id="stran_21" display="none">
+		<text x="130" y="40" font-size="40">literatura in primeri</text>
+		<text x="20" y="80">
+			<tspan x="20" dy="25">- SVG na Pinkjuice</tspan>
+			<tspan fill="red"><a xlink:href="http://www.pinkjuice.com/svg/" target="_blank">www.pinkjuice.com/svg/</a></tspan>
+			<tspan x="20" dy="25">- KevLinDev</tspan>
+			<tspan fill="red"><a xlink:href="http://www.kevlindev.com/" target="_blank">www.kevlindev.com</a></tspan>
+			<tspan x="20" dy="25">- svgnotebook</tspan>
+			<tspan fill="red"><a xlink:href="http://www.svgnotebook.com/" target="_blank">www.svgnotebook.com</a></tspan>
+			<tspan x="20" dy="25">- svg-wiki</tspan>
+			<tspan fill="red"><a xlink:href="http://www.protocol7.com/svg-wiki/" target="_blank">www.protocol7.com/svg-wiki</a></tspan>
+			<tspan x="20" dy="25">- Iguana Studios SVG</tspan>
+			<tspan fill="red"><a xlink:href="http://www.iguanastudios.com/rnd/svg/" target="_blank">www.iguanastudios.com/rnd/svg</a></tspan>
+			<tspan x="20" dy="25">- Pilat Informative Educative</tspan>
+			<tspan fill="red"><a xlink:href="http://pilat.free.fr/english/index.htm" target="_blank">pilat.free.fr/english/index.htm</a></tspan>
+			<tspan x="20" dy="25">- Taper Transformation</tspan>
+			<tspan x="40" dy="25" fill="red"><a xlink:href="http://www.geocities.com/mpouchon/SVG/PerspAndTaper/PerspAndTaperTrsf" target="_blank">www.geocities.com/mpouchon/SVG/PerspAndTaper/PerspAndTaperTrsf</a></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan fill="red"><a xlink:href="" target="_blank"></a></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan fill="red"><a xlink:href="" target="_blank"></a></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan fill="red"><a xlink:href="" target="_blank"></a></tspan>
+			<tspan x="20" dy="25"></tspan>
+			<tspan fill="red"><a xlink:href="" target="_blank"></a></tspan>
+		</text>
+	</g>
+</g>
+
+<g transform="translate(14,8)">
+	<g id="ikone_strani" stroke="none"  display="inline">
+		<g id="iko_nazaj" onclick="nazaj()">
+			<rect width="32" height="32" fill="#808080"/>
+			<path d="M29 11 L29 21 L12 21 L12 29 L2 16 L12 3 L12 11 z" fill="#ffffff"/>
+			<aex:audio xlink:href="sound16.wav" volume="10" begin="iko_nazaj.onclick"/>
+		</g>
+		<g id="iko_kazalo" transform="translate(35,0)" onclick="kazalo()">
+			<rect width="32" height="32" fill="#808080"/>
+			<g id="pika_crta">
+				<circle cx="4" cy="5" r="2" fill="#ffffff"/>
+				<path d="M8 6 L29 6" stroke="#ffffff" stroke-width="1"/>
+			</g>
+			<use xlink:href="#pika_crta" y="6"/>
+			<use xlink:href="#pika_crta" y="12"/>
+			<use xlink:href="#pika_crta" y="18"/>
+			<aex:audio xlink:href="sound21.wav" volume="10" begin="iko_kazalo.onclick"/>
+		</g>
+		<g id="iko_naprej" transform="translate(70,0)" onclick="naprej()">
+			<rect width="32" height="32" fill="#808080"/>
+			<path d="M3 11 L3 21 L20 21 L20 29 L30 16 L20 3 L20 11 z" fill="#ffffff"/>
+			<aex:audio xlink:href="sound16.wav" volume="10" begin="iko_naprej.onclick"/>
+		</g>
+	</g>
+	<g id="ikone_primeri" stroke="none"  display="none">
+		<g id="iko_nazaj" onclick="zapri_primer()">
+			<rect width="102" height="32" fill="#808080"/>
+			<path d="M99 11 L99 21 L12 21 L12 29 L2 16 L12 3 L12 11 z" fill="#ffffff"/>
+			<aex:audio xlink:href="sound16.wav" volume="10" begin="iko_primeri.onclick"/>
+		</g>
+	</g>
+</g>
+
+</svg>

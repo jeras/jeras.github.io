@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg fill="none" viewBox="0 0 400 400" stroke-width="2">
+
+<text x="20" y="100" font-size="30" fill="blue">original</text>
+<g transform="translate(-850)">
+	<a xlink:href="http://www.titoville.com/" target="_blank">
+	<g id="Tito_a" stroke="#FFA500" fill="#000000">
+		<set attributeType="XML" attributeName="fill" to="#402900" begin="Tito_a.mouseover"/>
+		<set attributeType="XML" attributeName="fill" to="#000000" begin="Tito_a.mouseout"/>
+		<g id="Tito">
+			<path d="M877.118 147.059L881.824 335.294L1017.12 338.824L1018.29 127.059z"/>
+			<path fill="none" d="M887.706 154.118L887.706 325.882L1004.18 327.059L1004.18 141.176zM894.765 314.118L998.294 312.941L1000.65 247.059L979.471 225.882L920.647 309.412L939.471 243.529L937.118 237.647C920.267 237.647 919.677 237.463 907.295 248.607C894.912 259.751 894.765 314.118 894.765 314.118zM934.765 234.01C901.027 161.572 1004.06 117.744 979.392 221.638M941.019 173.853C977.657 173.327 930.702 193.947 969.969 197.304C1009.24 200.66 939.696 197.422 939.696 197.422C953.814 213.639 918.332 206.398 934.765 196.735"/>
+		</g>
+	</g></a>
+</g>
+
+
+<text x="200" y="100" font-size="30" fill="blue">instance</text>
+<g transform="translate(-680)">
+	<a xlink:href="http://www.titoville.com/" target="_blank">
+	<g id="Tito_b" stroke="#FFA500" fill="#000000">
+		<set attributeType="XML" attributeName="fill" to="#402900" begin="Tito_b.mouseover"/>
+		<set attributeType="XML" attributeName="fill" to="#000000" begin="Tito_b.mouseout"/>
+		<use xlink:href="#Tito"/>
+	</g></a>
+</g>
+</svg>

@@ -1,0 +1,59 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="-1100 -1100 2200 2200" fill="none" stroke="none" stroke-width="1">
+	<g transform="rotate(-135) scale(1,-1)">
+		<circle cx="0" cy="0" r="1062.5" fill="black"/>
+		<circle cx="0" cy="0" r="937.5" fill="white"/>
+		<path d="M0 0 L-1322.8756555322952952508078768196 0 L-1322.8756555322952952508078768196 -562.5 z" fill="white"/>
+		<clipPath id="kos_repka">
+			<path d="M0 0 L0 200 L-1322.8756555322952952508078768196 200 L-1322.8756555322952952508078768196 -562.5 z"/>
+		</clipPath>
+		<g clip-path="url(#kos_repka)">
+			<circle cx="-661.43782776614764762540393840982" cy="-281.25" r="343.75" fill="black"/>
+		</g>
+		<circle cx="-661.43782776614764762540393840982" cy="-281.25" r="218.75" fill="white"/>
+		<path d="M0 0 L-661.43782776614764762540393840982 0 L-661.43782776614764762540393840982 281.25 z" fill="black"/>
+		<circle cx="-661.43782776614764762540393840982" cy="281.25" r="218.75" fill="white"/>
+		<circle cx="-1000" cy="0" r="62.5" fill="black"/>
+
+		<path d="M0 0 L535 -323.1099 L500 0 L535 323.1099 z" fill="black"/>
+		<circle transform="rotate(-31.1296)" cx="625" cy="0" r="125" fill="white"/>
+		<circle cx="500" cy="0" r="200" fill="black"/>
+		<circle transform="rotate(31.1296)" cx="625" cy="0" r="125" fill="white"/>
+
+		<g transform="rotate(12)">
+			<g id="noga" transform="translate(359.76903247742244235851368530933,359.76903247742244235851368530933)" overflow="visible">
+				<g fill="black">
+					<path transform="rotate(45)"  d="M-500 0 L0 -144.33756729740644112728719512549 L0 144.33756729740644112728719512549 z"/>
+					<g transform="rotate(-15)">
+						<g id="prst">
+							<circle cx="250" cy="0" r="115.47005383792515290182975610039"/>
+							<path d="M0 0 L 125 -72.168783648703220563643597562745 L 250 0 L 125 72.168783648703220563643597562745 z"/>
+						</g>
+					</g>
+					<use transform="rotate(45)" xlink:href="#prst"/>
+					<use transform="rotate(105)" xlink:href="#prst"/>
+					<circle cX="0" cy="0" r="115.47005383792515290182975610039" fill="black"/>
+				</g>
+				<g fill="white">
+					<g transform="rotate(-45)">
+						<circle id="prstna_luknja" cx="144.33756729740644112728719512549" cy="0" r="28.867513459481288225457439025098"/>
+					</g>
+					<use transform="rotate(15)" xlink:href="#prstna_luknja"/>
+					<use transform="rotate(75)" xlink:href="#prstna_luknja"/>
+					<use transform="rotate(135)" xlink:href="#prstna_luknja"/>
+				</g>
+			</g>
+		</g>
+		<use transform="rotate(78)" xlink:href="#noga"/>
+		<use transform="rotate(192)" xlink:href="#noga"/>
+		<use transform="rotate(258)" xlink:href="#noga"/>
+
+		<circle cx="0" cy="0" r="500" fill="black"/>
+
+		<g fill="white">
+			<circle cx="350" cy="-125" r="62.5"/>
+			<circle cx="350" cy="125" r="62.6"/>
+		</g>
+	</g>
+</svg>

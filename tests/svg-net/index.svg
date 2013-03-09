@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="100%" height="100%"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+<style type="text/css">
+text {stroke-width:0.3}
+text {font-family:verdana, arial, helvetica, sans-serif}
+
+</style>
+ 
+	<title>Dobrodosli na SVG strani</title>
+<!--prazno-->
+
+		<rect x="0" y="0"  width="200" height="100" style="fill:green; stroke:none;"></rect>
+
+		
+		<image x="900" y="3" width="100px" height="133px"
+        	 xlink:href="images/svglogo1.gif">
+    			</image>
+
+ 
+<!--zacetek menija-->
+	<g>
+		<rect x="0" y="100" width="200" height="30" style="fill:green; stroke:none;">
+			<animate begin="rollover.mouseover" attributeName="fill" from="green" to="#CCFFCC" 
+			  dur="2s" fill="freeze" />
+			<animate begin="rollover.mouseout" attributeName="fill" from="#CCFFCC" to="green" 
+			  dur="2s" fill="freeze" />
+		</rect>
+				<a xlink:href="index.svg">
+					<text id="rollover" style="fill:#CCCCCC; font-size:12;" x="30" y="120">
+				DOMOV
+						</text>
+							</a>
+	</g>
+
+	<g>
+		<rect x="0" y="130" width="200" height="30" style="fill:green; stroke:none;">
+			<animate begin="rollover_1.mouseover" attributeName="fill" from="green" to="#CCFFCC" 
+			 dur="2s" fill="freeze" />
+			<animate begin="rollover_1.mouseout" attributeName="fill" from="#CCFFCC" to="green" 
+			  dur="2s" fill="freeze" />
+		</rect>
+				<a xlink:href="osnove.svg">
+					<text id="rollover_1" style="fill:#CCCCCC; font-size:12;" x="30" y="150">
+				OSNOVE
+						</text>
+							</a>
+	</g>
+
+	<g>
+		<rect x="0" y="160" width="200" height="30" style="fill:green; stroke:none;">
+			<animate begin="rollover_2.mouseover" attributeName="fill" from="green" to="#CCFFCC" 
+			  dur="2s" fill="freeze" />
+			<animate begin="rollover_2.mouseout" attributeName="fill" from="#CCFFCC" to="green" 
+			  dur="2s" fill="freeze" />
+		</rect>
+				<a xlink:href="ognjemet.svg">
+					<text id="rollover_2" style="fill:#CCCCCC; font-size:12;" x="30" y="180">
+				OGNJEMET
+						</text>
+							</a>
+	</g>
+
+	<g>
+		<rect x="0" y="190" width="200" height="30" style="fill:green; stroke:none;">
+			<animate begin="rollover_3.mouseover" attributeName="fill" from="green" to="#CCFFCC" 
+			  dur="2s" fill="freeze" />
+			<animate begin="rollover_3.mouseout" attributeName="fill" from="#CCFFCC" to="green" 
+			  dur="2s" fill="freeze" />
+		</rect>
+				<a xlink:href="ozadje.svg">
+					<text id="rollover_3" style="fill:#CCCCCC; font-size:12;" x="30" y="210">
+				OZADJE
+						</text>
+							</a>
+	</g>
+
+	<g>
+		<rect x="0" y="220" width="200" height="30" style="fill:green; stroke:none;">
+			<animate begin="rollover_4.mouseover" attributeName="fill" from="green" to="#CCFFCC" 
+			 dur="2s" fill="freeze" />
+			<animate begin="rollover_4.mouseout" attributeName="fill" from="#CCFFCC" to="green" 
+			 dur="2s" fill="freeze" />
+		</rect>
+				<a xlink:href="ozadje_1.svg">
+					<text id="rollover_4" style="fill:#CCCCCC; font-size:12;" x="30" y="240">
+				OZADJE_1
+						</text>
+							</a>
+	</g>
+
+	<g>
+		<rect x="0" y="250" width="200" height="30" style="fill:green; stroke:none;">
+			<animate begin="rollover_5.mouseover" attributeName="fill" from="green" to="#CCFFCC" 
+			  dur="2s" fill="freeze" />
+			<animate begin="rollover_5.mouseout" attributeName="fill" from="#CCFFCC" to="green" 
+			  dur="2s" fill="freeze" />
+		</rect>
+				<a xlink:href="gradient_efekt.svg">
+					<text id="rollover_5" style="fill:#CCCCCC; font-size:12;" x="30" y="270">
+				GRADIENT 
+						</text>
+							</a>
+	</g>
+
+
+	<g>
+		<rect x="0" y="280" width="200" height="30" style="fill:green; stroke:none;">
+			<animate begin="rollover_6.mouseover" attributeName="fill" from="green" to="#CCFFCC" 
+			  dur="2s" fill="freeze" />
+			<animate begin="rollover_6.mouseout" attributeName="fill" from="#CCFFCC" to="green" 
+			  dur="2s" fill="freeze" />
+		</rect>
+				<a xlink:href="text.svg">
+					<text id="rollover_6" style="fill:#CCCCCC; font-size:12;" x="30" y="300">
+				TOREJ...
+						</text>
+							</a>
+	</g>
+
+	
+<!--konec menija-->
+
+<!--prazno_dol-->
+
+	<svg>
+		<rect x="0" y="310"  width="200" height="360" style="fill:green; stroke:none;">
+		   </rect>
+	</svg> 
+
+<!--vsebina-->
+
+
+		<rect x="200" y="370" width="900" height="300" style="fill:#CCFFCC; stroke:none;">
+		</rect>
+		<a xlink:href="mailto:info@svg-net.com">
+		<image x="220" y="500" width="17px" height="84px"
+        	 xlink:href="images/svglogo2.gif">
+    			</image>
+		</a>
+
+		<image x="450" y="370" width="488px" height="275px"
+        	 xlink:href="images/svgkodas.gif">
+    			</image>
+		
+
+
+		<line x1="200" y1="120" x2="200" y2="120" style="stroke:green; stroke-width:1">
+		<animate attributeName="x1" attributeType="XML" begin="0s" from="200" to="1100" 
+		dur="7s" fill="freeze" />
+		</line>
+
+
+
+	
+		
+		
+
+	<text x="250" y="90" style="fill:green; font-size:16;">Hello World!!
+		<animate attributeName="x" attributeType="XML" begin="0s" from="60" to="250" 
+			dur="8s" repeatCount="1" />
+						</text>
+	   <text><tspan x="220" y="150" style="font-size:12;">Malo oguljena fraza, vendar pa vseeno, tokrat izpisana z
+ 							pomocjo novega jezika ki je dobil ime SVG.</tspan>
+	    <tspan x="220" y="170" style="font-size:12;">In prav slednjemu se lahko zahvalimo (ali pa tudi ne) da obstaja stran v katero
+							 trenutno gledate,</tspan>
+		<tspan x="220" y="190" style="font-size:12;">saj je narejena samo z pomočjo SVG-a.</tspan>
+		<tspan x="220" y="210" style="font-size:12;">Vsaka stran ima nek namen, tako tudi svg-net ima, v prvi vrsti, namen rasti, oz.
+							se razvijati, saj je</tspan> 
+		<tspan x="220" y="230" style="font-size:12;">trenutno se v experimentalni fazi in je se daleč od končne podobe. Kljub temu pa vsi, ki bi radi</tspan>
+		<tspan x="220" y="250" style="font-size:12">izvedeli kaj več o SVG-u lahko ze zdaj najdete nekaj zanimivih primerov, katere lahko uporabite</tspan>
+		<tspan x="220" y="270" style="font-size:12">na tisoč drugih načinov. Uporabite domišljijo.</tspan></text>
+
+</svg>
+
+
+

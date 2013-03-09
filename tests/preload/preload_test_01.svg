@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
+<svg width="1000" height="600" onload="on_load(evt)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>Preload test</title>
+	<desc>test code for preloading of SVG content into main SVG page</desc>
+	<!-- ECMAScript for preloading of svg subpages -->
+
+<script type="text/ecmascript"> <![CDATA[
+
+//	var prelo_file_p=new listFile();		// creation of new variable for a subpage list
+
+function listFile(url,area) {
+	this.url=new Array;
+	this.name=new Array;			// subpage neme is not used
+}
+
+// definition of URL-s for subpages
+var prelo_file_p=new Array("ladjica.svg","glavonozec_anim_old.svg","text.svg","jpg.svg");
+
+var prelo_file_s=new Array("page_01.svg","page_02.svg","page_03.svg","page_04.svg");
+var prelo_s_cnt;
+
+function on_load (evt) {
+	window.safecall = safecall;		// safecall function if something from adobe, see adobe's examples
+	paralel_preload();
+	serial_preload();
+}
+
+function paralel_preload() {
+	for (i=0; i<prelo_file_p.length; i++) {
+		getURL(prelo_file_p[i],callback_paralel);	// starts loading of subpages simultaneously (paralely)
+		event_log('preload_start: '+prelo_file_p[i]);
+	}
+}
+
+function callback_paralel(urlRequestStatus) {
+	event_log(' preload_success: '+urlRequestStatus.success);		// logs the success status of a download
+	event_log(' preload_contentType: '+urlRequestStatus.contentType);	// logs the contentType of a log
+//		event_log('s_ '+urlRequestStatus.content);		// logs the content of the download
+	var prelo_node = parseXML(urlRequestStatus.content,document);
+	event_log('preload_id: '+prelo_node.firstChild.id);		// logs the id of the svg element of the downloaded svg subpage
+	document.getElementById('area_'+prelo_node.firstChild.id).appendChild(prelo_node);
+	// appends the preloaded subpage to the main inside a element with id="area"+id (of preloaded document's root svg element
+}
+
+function serial_preload() {
+	prelo_s_cnt=0;
+	getURL(prelo_file_s[prelo_s_cnt],callback_serial);	// starts loading of subpages one per one (serialy), starting the first
+	event_log('preload_start: '+prelo_file_s[prelo_s_cnt]);
+}
+
+function callback_serial(urlRequestStatus) {
+	prelo_s_cnt++;
+	if (prelo_s_cnt<prelo_file_p.length) {
+		getURL(prelo_file_s[prelo_s_cnt],callback_serial);	// recursively preloads pages to the last
+		event_log('preload_start: '+prelo_file_s[prelo_s_cnt]);
+	}
+
+	event_log(' preload_success: '+urlRequestStatus.success);		// logs the success status of a download
+	event_log(' preload_contentType: '+urlRequestStatus.contentType);	// logs the contentType of a log
+//		event_log('s_ '+urlRequestStatus.content);		// logs the content of the download
+	var prelo_node = parseXML(urlRequestStatus.content,document);
+	event_log('preload_id: '+prelo_node.firstChild.id);		// logs the id of the svg element of the downloaded svg subpage
+	document.getElementById('area_'+prelo_node.firstChild.id).appendChild(prelo_node);
+	// appends the preloaded subpage to the main inside a element with id="area"+id (of preloaded document's root svg element
+}
+
+// these is my event log function intended for debugging
+// it needs some svg code that is located on the bottom (all the styling is done in the svg part)
+function event_log(text) {
+	var event = document.getElementById('event_log');
+	var new_event=event.cloneNode(1);
+	new_event.getFirstChild().setData(text);
+	event.parentNode.appendChild(new_event);
+}
+
+// safecall function if something from adobe, see adobe's examples
+function safecall (stmt) {
+	var old_error = window.onerror;
+	window.onerror = safecall_suppress_errors;
+	eval (stmt);
+	window.onerror = old_error; }
+function safecall_suppress_errors () {
+	return true; }
+
+]]></script>
+
+
+<g transform="translate(200,0)" id="area_ladjica"/>
+<g transform="translate(400,0)" id="area_glavonozec"/>
+<g transform="translate(200,200)" id="area_text"/>
+<g transform="translate(400,200)" id="area_jpg"/>
+
+<g transform="translate(620,0)" id="area_page_01"/>
+<g transform="translate(620,100)" id="area_page_02"/>
+<g transform="translate(620,200)" id="area_page_03"/>
+<g transform="translate(620,300)" id="area_page_04"/>
+
+<text y="10" font-size="10" fill="#000000">
+	<tspan id="event_log" x="10" dy="11">Event log:</tspan>
+</text>
+
+</svg>

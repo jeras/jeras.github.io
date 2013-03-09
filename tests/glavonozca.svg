@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="400" height="200">
+	<g id="glavonozec" pointer-events="all" stroke="#ee9920" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" fill="none" transform="matrix(1.8 0 0 1.8 10 20)">
+		<path id="obraz"
+			d="M50 29 C16 15 23 79 58 65 C84 55 67 13 45 30 M44 43 C35 44 36 38 41 36 C49 36 46 43 44 43 zM55 44 C51 43 55 34 58 36 C65 40 60 44 55 44 zM39 52 L61 54 C57 61 39 63 39 52 z"/>
+		<g id="roki" >
+			<g  transform="translate(3.5 -3)">
+				<g id="levica" transform="rotate(15 67 33)" >
+					<path d="M67 33 C71 27 79 27 82 26 C86 25 84 26 85 26"/>
+					<path d="M83 31 L91 20 M78 22 L93 27 M84 19 L89 32"/>
+					<animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="0.7s"  calcMode="linear" repeatCount="indefinite" begin="glavonozec.mouseover" end="glavonozec.mouseout" 
+						values="15 67 33;-15 67 33;15 67 33"
+						keyTimes="1s;2s;3s" />
+				</g>
+			</g>
+			<g transform="translate(-2.5 -6.5)">
+				<g id="desnica" transform="rotate(-15 28 39)">
+					<path d="M28 39 C24 33 19 28 11 26"/>
+					<path d="M4 27 L19 24 M7 20 L14 32 M14 19 L7 33"/>
+					<animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="0.7s"  calcMode="linear" repeatCount="indefinite" begin="glavonozec.mouseover" end="glavonozec.mouseout" 
+						values="-15 28 39;15 28 39;-15 28 39"
+						keyTimes="1s;2s;3s" />
+				</g>
+			</g>
+		</g>
+		<g id="nogi">
+			<path d="M 36.1 63.7 L 28.8 77.2 L 18.5 76.6">
+				<animate id="stopicljanje" attributeName="d" dur="0.4s" begin="glavonozec.mouseout" end="glavonozec.mouseover" calcMode="linear" repeatCount="indefinite"
+					values="M 36.1 63.7 L 28.8 77.2 L 20.3 70.1;
+							M 36.1 63.7 L 28.8 77.2 L 18.5 76.6;
+							M 36.1 63.7 L 28.8 77.2 L 20.3 70.1"
+					keyTimes="1s; 2s; 2.5s">
+				</animate>
+			</path>
+			<path d="M58.7143 65.5 L58 78.5 L73.2857 78.6429" />
+		</g>
+	</g>
+	<use x="200" y="0" xlink:href="#glavonozec"/>
+</svg>

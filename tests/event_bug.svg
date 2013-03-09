@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>event handling bug in ASV</title>
+<!-- ECMAScript za spreminjanje vidljivosti menujev -->
+<script> <![CDATA[
+	var tekoca_stran=1;
+	var tekoci_primer=null;
+	var st_strani=21;
+	
+	function blue_displayed() {
+		event_log('onclick event on blue displayer');
+		document.getElementById('blue').setAttribute("display","inline");
+		event_log('--- blue display property set to inline');
+	}
+	function blue_undisplayed() {
+		event_log('onmouseup event on blue');
+		document.getElementById('blue').setAttribute("display","none");
+		event_log('--- blue display property set to none');
+	}
+
+
+// these is my event log function intended for debugging
+// it needs some svg code that is located on the bottom (all the styling is done in the svg part)
+function event_log(text) {
+	var event = document.getElementById('event_log');
+	var new_event=event.cloneNode(1);
+	new_event.getFirstChild().setData(text);
+	event.parentNode.appendChild(new_event);
+}
+
+]]></script>
+
+
+<g font-family="Century Gothic" fill="#6464E4" font-size="20" stroke="none">
+
+	<circle id="open_blue" cx="450" cy="50" r="40" stroke="none" fill="orange" onclick="blue_displayed()"/>
+	<text x="420" y="20" font-size="15" fill="black" pointer-events="none">
+		<tspan x="420" dy="15">CLICK to</tspan>
+		<tspan x="420" dy="15">redisplay</tspan>
+		<tspan x="420" dy="15">blue</tspan>
+	</text>
+
+	<circle id="red" cx="150" cy="150" r="140" stroke="none" fill="red" fill-opacity="0.7"
+		onmouseover="event_log('onmouseover event on red')"
+		onmouseout="event_log('onmouseout event on red')"
+		onmouseup="event_log('onmouseup event on red')"
+		onmousedown="event_log('onmousedown event on red')"
+		onclick="event_log('onclick event on red')"/>
+
+	<circle id="blue" cx="300" cy="150" r="140" stroke="none" fill="blue" fill-opacity="0.7"
+		onmouseover="event_log('onmouseover event on blue')"
+		onmouseout="event_log('onmouseout event on blue')"
+		onmouseup="blue_undisplayed()"
+		onmousedown="event_log('onmousedown event on blue')"
+		onclick="event_log('onclick event on blue')"/>
+
+	<text x="20" y="300">
+		<tspan x="20" dy="25">Red events:</tspan>
+		<tspan fill="black">
+			<tspan x="20" dy="25">- onmouseover</tspan>
+			<tspan x="20" dy="25">- onmouseout</tspan>
+			<tspan x="20" dy="25">- onmouseup</tspan>
+			<tspan x="20" dy="25">- onmousedown</tspan>
+			<tspan x="20" dy="25">- onclick</tspan>
+		</tspan>
+	</text>
+	<text x="200" y="300">
+		<tspan x="200" dy="25">Blue events:</tspan>
+		<tspan fill="black">
+			<tspan x="200" dy="25">- onmouseover</tspan>
+			<tspan x="200" dy="25">- onmouseout</tspan>
+			<tspan x="200" dy="25">- onmouseup</tspan>
+			<tspan x="210" dy="25">sets the blue's display property to none</tspan>
+			<tspan x="200" dy="25">- onmousedown</tspan>
+			<tspan x="200" dy="25">- onclick</tspan>
+		</tspan>
+	</text>
+
+
+	<text x="20" y="500">
+		<tspan x="20" dy="20">try to click on the blue circle, where it is overlaping the red circle</tspan>
+		<tspan x="20" dy="20">the onmouseup and onmousedown happen on the blue circle</tspan>
+		<tspan x="20" dy="20">the onclick event happens on the red circle (but it should not?)</tspan>
+	</text>
+
+</g>
+
+<text y="10" font-size="14" fill="green">
+	<tspan id="event_log" x="500" dy="15">Event log:</tspan>
+</text>
+
+</svg>

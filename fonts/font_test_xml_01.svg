@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+ "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>ročno napisan SVG font, handwritten SVG font</title>
+	<desc>these font was made in Jasc WebDraw and rotated with a perl script</desc>
+<defs>
+<font id="Font1" horiz-origin-x="200" horiz-origin-y="200" horiz-adv-x="200" >
+	<font-face font-family="IzI_handwritten_01" units-per-em="400" cap-height="300" x-height="150" ascent-height="300"
+		ascent="700" descent="0" alphabetic="0" mathematical="350" ideographic="400" hanging="500">
+	</font-face>
+
+	<missing-glyph horiz-adv-x="300" d="M206 520 C225 520 255 525 273 518 C343 490 315 318 308 261 C306 248 298 214 304 201 C306 198 305 208 306 212 C320 258 305 195 311 237 C315 267 317 303 327 332 C349 396 383 492 455 514 C455 514 480 518 489 519 M242 266 C242 266 337 291 384 266"/>
+
+	<glyph unicode="A" horiz-adv-x="302" d="M198 186 C245 280 254 367 305 459 C315 477 325 495 331 498 C337 501 347 429 358 383 C376 308 422 200 451 201 M250 308 C261 308 280 315 291 314 C317 311 317 299 366 307"/>
+	<glyph unicode="B" horiz-adv-x="240" d="M204 492 C204 451 197 386 200 345 C200 345 206 246 204 204 M218 463 C212 504 317 515 343 475 C371 434 261 388 263 388 C263 388 328 402 356 366 C412 293 406 195 293 200 C275 201 233 215 215 218"/>
+	<glyph unicode="C" horiz-adv-x="278" d="M360 471 C418 489 308 513 268 488 C214 453 187 326 207 265 C223 215 285 183 331 211 C362 229 402 263 429 287"/>
+	<glyph unicode="Č" horiz-adv-x="278" d="M360 471 C418 489 308 513 268 488 C214 453 187 326 207 265 C223 215 285 183 331 211 C362 229 402 263 429 287 M282 585 C332 523 299 507 361 589"/>
+	<glyph unicode="a" horiz-adv-x="213" d="M314 338 C244 385 159 265 226 211 C241 199 258 201 274 207 C327 224 340 280 331 334 C330 336 329 350 325 351 C319 353 328 261 330 243 C335 195 327 212 373 208"/>
+	<glyph unicode="b" horiz-adv-x="160" d="M207 499 C207 437 208 358 202 296 C200 274 201 252 201 231 L201 203 C201 240 199 374 276 346 C320 330 310 281 304 258 C288 200 230 183 211 219"/>
+	<glyph unicode="c" horiz-adv-x="185" d="M326 319 C305 366 221 357 205 310 C174 215 301 157 336 242"/>
+	<glyph unicode="č" horiz-adv-x="185" d="M326 319 C305 366 221 357 205 310 C174 215 301 157 336 242 M244 450 C244 442 265 396 272 398 C282 402 299 436 302 446"/>
+	<glyph unicode=" " horiz-adv-x="300"/>
+</font>
+<font id="Font1" horiz-origin-x="200" horiz-origin-y="200" horiz-adv-x="200" >
+	<font-face font-family="IzIhandwritten01" units-per-em="400" cap-height="300" x-height="150" ascent-height="300"
+		ascent="700" descent="0" alphabetic="0" mathematical="350" ideographic="400" hanging="500">
+	</font-face>
+
+	<missing-glyph horiz-adv-x="300" d="M206 520 C225 520 255 525 273 518 C343 490 315 318 308 261 C306 248 298 214 304 201 C306 198 305 208 306 212 C320 258 305 195 311 237 C315 267 317 303 327 332 C349 396 383 492 455 514 C455 514 480 518 489 519 M242 266 C242 266 337 291 384 266"/>
+
+	<glyph unicode="A" horiz-adv-x="302" d="M198 186 C245 280 254 367 305 459 C315 477 325 495 331 498 C337 501 347 429 358 383 C376 308 422 200 451 201 M250 308 C261 308 280 315 291 314 C317 311 317 299 366 307"/>
+	<glyph unicode="B" horiz-adv-x="240" d="M204 492 C204 451 197 386 200 345 C200 345 206 246 204 204 M218 463 C212 504 317 515 343 475 C371 434 261 388 263 388 C263 388 328 402 356 366 C412 293 406 195 293 200 C275 201 233 215 215 218"/>
+	<glyph unicode="C" horiz-adv-x="278" d="M360 471 C418 489 308 513 268 488 C214 453 187 326 207 265 C223 215 285 183 331 211 C362 229 402 263 429 287"/>
+	<glyph unicode="Č" horiz-adv-x="278" d="M360 471 C418 489 308 513 268 488 C214 453 187 326 207 265 C223 215 285 183 331 211 C362 229 402 263 429 287 M282 585 C332 523 299 507 361 589"/>
+	<glyph unicode="a" horiz-adv-x="213" d="M314 338 C244 385 159 265 226 211 C241 199 258 201 274 207 C327 224 340 280 331 334 C330 336 329 350 325 351 C319 353 328 261 330 243 C335 195 327 212 373 208"/>
+	<glyph unicode="b" horiz-adv-x="160" d="M207 499 C207 437 208 358 202 296 C200 274 201 252 201 231 L201 203 C201 240 199 374 276 346 C320 330 310 281 304 258 C288 200 230 183 211 219"/>
+	<glyph unicode="c" horiz-adv-x="185" d="M326 319 C305 366 221 357 205 310 C174 215 301 157 336 242"/>
+	<glyph unicode="č" horiz-adv-x="185" d="M326 319 C305 366 221 357 205 310 C174 215 301 157 336 242 M244 450 C244 442 265 396 272 398 C282 402 299 436 302 446"/>
+	<glyph unicode=" " horiz-adv-x="300"/>
+</font>
+</defs>
+
+
+<text x="20" y="50" font-family='Century Gothic' font-size="20" fill="black">font name with _ (under slash) IzI_handwritten_01</text>
+<text font-size="50" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="black">
+	<tspan x="20" y="100" font-size="20" fill="black" stroke="none">CSS font definition:</tspan>
+		<tspan style="font-family: 'IzI_handwritten_01'">ABCČDE abcčde</tspan>
+	<tspan x="20" y="150" font-size="20" fill="black" stroke="none">XML font definition:</tspan>
+		<tspan font-family='IzI_handwritten_01'>ABCČDE abcčde</tspan>
+</text>
+
+<text x="20" y="300" font-family='Century Gothic' font-size="20" fill="black">font name without _ (under slash) IzIhandwritten01</text>
+<text font-size="50" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke="black">
+	<tspan x="20" y="350" font-size="20" fill="black" stroke="none">CSS font definition:</tspan>
+		<tspan style="font-family: 'IzIhandwritten01'">ABCČDE abcčde</tspan>
+	<tspan x="20" y="400" font-size="20" fill="black" stroke="none">XML font definition:</tspan>
+		<tspan font-family='IzIhandwritten01'>ABCČDE abcčde</tspan>
+</text>
+
+</svg>

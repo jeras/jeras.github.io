@@ -1,0 +1,7 @@
+AddType image/svg+xml .svg
+AddType image/svg+xml .svgz
+
+AddCharset UTF-8 .htm
+AddCharset UTF-8 .html
+AddCharset UTF-8 .svg
+AddCharset UTF-8 .svgz

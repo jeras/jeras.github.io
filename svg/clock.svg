@@ -1,0 +1,60 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" onload="Initialize(evt)" viewBox="0 0 500 500" stroke="#ffffff" fill="none">
+<script type="text/ecmascript"><![CDATA[
+function Initialize(evt){
+	var now = new Date();
+	var s = now.getSeconds();
+	var m = now.getMinutes();
+	var h = now.getHours();
+	document.getElementById("hourhand").setAttribute("transform", "rotate("+ (h*30+m/2+s/120) +")");
+	document.getElementById("minhand").setAttribute("transform", "rotate("+ (m*6+s/10) +")");
+	document.getElementById("sechand").setAttribute("transform", "rotate("+ s*6 +")");
+}
+]]></script>
+	<rect x="-200" y="-200" width="900" height="900" fill="#000000"/>
+	<rect x="14" y="22" width="471" height="447" rx="43" ry="43"/>
+	<rect x="50" y="57" width="398" height="372" rx="12" ry="12"/>
+	<rect x="59" y="68" width="378" height="349" rx="3" ry="3"/>
+	<circle cx="81" cy="149" r="7"/><circle cx="80" cy="240.5" r="7"/><circle cx="80" cy="334.5" r="7"/>
+	<circle cx="150.5" cy="404" r="7"/><circle cx="245" cy="404.5" r="7"/><circle cx="342" cy="406.5" r="7"/>
+	<circle cx="412" cy="340" r="7"/><circle cx="415" cy="246.5" r="7"/><circle cx="414.5" cy="153.5" r="7"/>
+	<circle cx="347" cy="81" r="7"/><circle cx="252" cy="79.5" r="7"/><circle cx="154.5" cy="79.5" r="7"/>
+	<path d="M231 74L232 83M213 74L214 83M193 74L196 83M174 74L177 83M128 78L133 87M109 90L114 97M93 104L100 112M82 123L89 129M77 168L86 172M77 188L86 190M78 206L86 208M77 223L86 224M75 260L84 259M78 277L85 276M76 298L85 295M77 317L85 315M81 358L89 353M93 377L100 371M108 394L114 387M128 402L132 394M169 409L172 402M189 411L194 401M209 410L211 402M226 409L228 402M264 412L261 403M283 411L280 402M301 411L299 402M323 412L319 403M364 406L358 398M383 396L376 388M399 382L392 374M412 362L404 357M418 322L410 318M419 302L410 299M418 283L409 280M420 265L410 263M421 230L412 232M422 214L412 215M421 194L412 196M420 175L412 178M414 129L406 134M405 108L397 114M390 93L384 99M370 84L365 92M324 77L320 85M305 78L301 87M286 76L284 84M269 76L267 84"/>
+	<path id="st_1" d="M325 90L325 128L333 128L333 90z"/>
+	<path id="st_2" d="M360 162L367 162L367 156L395 157L395 165L360 175L360 188L404 188L404 180L368 180L402 172L403 150L360 149z"/>
+	<path id="st_3" d="M359 226L359 238L366 238L366 233L393 234L393 241L376 241L376 248L394 249L394 257L367 257L367 251L359 251L359 263L401 264L401 226z"/>
+	<path id="st_4" d="M354 325L354 334L384 334L384 340L392 341L392 335L398 335L399 327L393 327L393 302L384 302zM365 327L385 312L384 327z"/>
+	<path id="st_5" d="M303 358L304 381L338 382L338 389L312 389L312 386L303 385L303 397L348 398L348 374L313 373L313 366L347 366L347 358z"/>
+	<path id="st_6" d="M223 358L223 396L264 396L265 374L232 373L231 366L257 366L257 370L265 370L265 358zM231 381L256 381L256 388L231 388z"/>
+	<path id="st_7" d="M144 356L144 365L175 365L158 396L168 396L190 357z"/>
+	<path id="st_8" d="M89 298L90 336L133 337L133 298zM98 307L125 307L125 313L98 313zM99 322L124 322L125 329L99 329z"/>
+	<path id="st_9" d="M91 220L91 244L126 244L126 253L98 252L98 248L90 248L90 260L135 261L135 220zM99 228L126 228L126 236L99 237z"/>
+	<path id="st_10" d="M91 143L91 181L99 181L99 144zM103 143L103 181L148 181L149 143zM112 152L139 152L139 173L112 173z"/>
+	<path id="st_11" d="M154 88L154 126L163 126L163 88zM175 88L175 126L184 126L184 88z"/>
+	<path id="st_12" d="M219 88L219 126L227 126L227 88zM232 102L238 102L238 96L267 97L267 105L231 114L232 127L275 128L275 120L240 120L274 112L274 90L232 89z"/>
+	<g transform="translate(250,245)">
+		<g id ="hourhand" transform="">
+		<path id="ure" fill="black" d="M-10 -105L-10 -30 A30 30 0 1 0 10 -30L10 -105 A10 10 0 1 0 -10 -105z
+		M-2 -95 -2 -65 A2 2 0 1 0 2 -65L2 -95 A2 2 0 1 0 -2 -95">
+			<animateTransform attributeName="transform" attributeType="XML" type="rotate" calcMode="discrete"
+			from="0" by="0.0125" dur="3s" accumulate="sum" repeat="indefinite" repeatDur="indefinite"/>
+		</path>
+		</g>
+		<g id="minhand" transform="">
+		<path id="minute" fill="black" d="M-8 -147L-8 -25 A25 25 0 1 0 8 -25L8 -147 A8 8 0 1 0 -8 -147z
+		M-2 -135 -2 -100 A2 2 0 1 0 2 -100L2 -135 A2 2 0 1 0 -2 -135">
+			<animateTransform attributeName="transform" attributeType="XML" type="rotate" calcMode="discrete"
+			from="0" by="0.1" dur="1s" accumulate="sum" repeat="indefinite" repeatDur="indefinite"/>
+		</path>
+		</g>
+		<g id="sechand" transform="">
+		<path id="sekunde" fill="black" d="M-3 -147L-3 -20 A19 19 0 1 0 3 -20L3 -147 A3 3 0 1 0 -3 -147">
+			<animateTransform attributeName="transform" attributeType="XML" type="rotate" calcMode="discrete"
+			from="0" by="6" dur="1s" accumulate="sum" repeat="indefinite" repeatDur="indefinite"/>
+		</path>
+		</g>
+	</g>
+</svg>
+

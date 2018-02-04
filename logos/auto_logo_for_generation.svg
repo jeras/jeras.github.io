@@ -1,0 +1,257 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="-1100 -1100 2200 2200" onload="on_load()">
+<script type="text/ecmascript"><![CDATA[
+	function pitagora(a,b) {
+		c=Math.sqrt(Math.pow(a,2)+Math.pow(b,2))
+		return c;
+	}
+	
+	var krivulje;
+	// trikotnik izhodišče A, središče nosa B, središče roba nosa C
+	var r_konca_nosa=200;
+	var r_roba_nosa=125;
+	var r_telo=500;
+	// dolzine stranic prvega trikotnika
+	var a_trik_nos=r_konca_nosa+r_roba_nosa;
+	var b_trik_nos=r_telo+r_roba_nosa;
+	var c_trik_nos=r_telo;
+
+	cos_alfa_nosa= ( Math.pow(b_trik_nos,2) +Math.pow(c_trik_nos,2) -Math.pow(a_trik_nos,2) ) / (2*b_trik_nos*c_trik_nos);
+	sin_alfa_nosa= Math.sqrt(1 -Math.pow(cos_alfa_nosa,2));
+
+	cos_beta_nosa= -( Math.pow(c_trik_nos,2) +Math.pow(a_trik_nos,2) -Math.pow(b_trik_nos,2) ) / (2*c_trik_nos*a_trik_nos);
+	sin_beta_nosa= Math.sqrt(1-Math.pow(cos_beta_nosa,2));
+
+	krivulje='M '+(r_telo+r_konca_nosa)+' '+(0)+
+	' A '+(r_konca_nosa)+' '+(r_konca_nosa)+' 0 0 1 '+(r_telo+cos_beta_nosa*r_konca_nosa)+' '+(sin_beta_nosa*r_konca_nosa)+
+	' A '+(r_roba_nosa)+' '+(r_roba_nosa)+' 0 0 0 '+(cos_alfa_nosa*r_telo)+' '+(sin_alfa_nosa*r_telo);
+
+	// opis prstov v poenostavljenem koordinatnem sistemu
+	var l_stopala=250;
+	var l_prsta=l_stopala*(2/3)*Math.sin(Math.PI/3);			// enak je vsoti r_prsta + r_med_prsti
+	var r_prsta=l_prsta*(4/5);
+	var r_med_prstoma=l_prsta*(1/5);
+
+	sin_fi_prsta= l_prsta/(r_telo+r_med_prstoma);
+	cos_fi_prsta= Math.sqrt(1-Math.pow(sin_fi_prsta,2));
+	d_prsta= (r_telo+r_med_prstoma)*cos_fi_prsta;
+
+	t0x= r_telo*cos_fi_prsta;
+	t0y= -r_telo*sin_fi_prsta;
+	t1x= d_prsta + r_med_prstoma*Math.cos(Math.PI/6);
+	t1y= -l_prsta -r_med_prstoma*Math.sin(Math.PI/6);
+	t2x= d_prsta + l_stopala/2;
+	t2y= -l_prsta/2 -r_med_prstoma;
+	t3x= d_prsta + l_stopala -r_prsta*Math.cos(Math.PI/6);
+	t3y= -r_prsta*Math.sin(Math.PI/6);
+	t4x= d_prsta + l_stopala-r_prsta*Math.cos(Math.PI/6);
+	t4y= +r_prsta*Math.sin(Math.PI/6);
+	t5x= d_prsta + l_stopala/2;
+	t5y= l_prsta/2+r_med_prstoma;
+	t6x= d_prsta + r_med_prstoma*Math.cos(Math.PI/6);
+	t6y= l_prsta+r_med_prstoma*Math.sin(Math.PI/6);
+	t7x= r_telo*cos_fi_prsta;
+	t7y= r_telo*sin_fi_prsta;
+
+
+	// priprave za izris prve noge
+	cos_kot_1=Math.cos((Math.PI/180)*57);
+	sin_kot_1=Math.sin((Math.PI/180)*57);
+
+	t0x_n1= cos_kot_1*t0x - sin_kot_1*t0y;
+	t0y_n1= sin_kot_1*t0x + cos_kot_1*t0y;
+	t1x_n1= cos_kot_1*t1x - sin_kot_1*t1y;
+	t1y_n1= sin_kot_1*t1x + cos_kot_1*t1y;
+	t2x_n1= cos_kot_1*t2x - sin_kot_1*t2y;
+	t2y_n1= sin_kot_1*t2x + cos_kot_1*t2y;
+	t3x_n1= cos_kot_1*t3x - sin_kot_1*t3y;
+	t3y_n1= sin_kot_1*t3x + cos_kot_1*t3y;
+	t4x_n1= cos_kot_1*t4x - sin_kot_1*t4y;
+	t4y_n1= sin_kot_1*t4x + cos_kot_1*t4y;
+	t5x_n1= cos_kot_1*t5x - sin_kot_1*t5y;
+	t5y_n1= sin_kot_1*t5x + cos_kot_1*t5y;
+	t6x_n1= cos_kot_1*t6x - sin_kot_1*t6y;
+	t6y_n1= sin_kot_1*t6x + cos_kot_1*t6y;
+	t7x_n1= cos_kot_1*t7x - sin_kot_1*t7y;
+	t7y_n1= sin_kot_1*t7x + cos_kot_1*t7y;
+
+	krivulje=krivulje+
+	' A '+(r_telo)+' '+(r_telo)+' 0 0 1 '+t0x_n1+' '+t0y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t1x_n1+' '+t1y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t2x_n1+' '+t2y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t3x_n1+' '+t3y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t4x_n1+' '+t4y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t5x_n1+' '+t5y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t6x_n1+' '+t6y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t7x_n1+' '+t7y_n1;
+
+
+	// priprave za izris druge noge
+	cos_kot_1=Math.cos((Math.PI/180)*123);
+	sin_kot_1=Math.sin((Math.PI/180)*123);
+
+	t0x_n1= cos_kot_1*t0x - sin_kot_1*t0y;
+	t0y_n1= sin_kot_1*t0x + cos_kot_1*t0y;
+	t1x_n1= cos_kot_1*t1x - sin_kot_1*t1y;
+	t1y_n1= sin_kot_1*t1x + cos_kot_1*t1y;
+	t2x_n1= cos_kot_1*t2x - sin_kot_1*t2y;
+	t2y_n1= sin_kot_1*t2x + cos_kot_1*t2y;
+	t3x_n1= cos_kot_1*t3x - sin_kot_1*t3y;
+	t3y_n1= sin_kot_1*t3x + cos_kot_1*t3y;
+	t4x_n1= cos_kot_1*t4x - sin_kot_1*t4y;
+	t4y_n1= sin_kot_1*t4x + cos_kot_1*t4y;
+	t5x_n1= cos_kot_1*t5x - sin_kot_1*t5y;
+	t5y_n1= sin_kot_1*t5x + cos_kot_1*t5y;
+	t6x_n1= cos_kot_1*t6x - sin_kot_1*t6y;
+	t6y_n1= sin_kot_1*t6x + cos_kot_1*t6y;
+	t7x_n1= cos_kot_1*t7x - sin_kot_1*t7y;
+	t7y_n1= sin_kot_1*t7x + cos_kot_1*t7y;
+
+	krivulje=krivulje+
+	' A '+(r_telo)+' '+(r_telo)+' 0 0 1 '+t0x_n1+' '+t0y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t1x_n1+' '+t1y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t2x_n1+' '+t2y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t3x_n1+' '+t3y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t4x_n1+' '+t4y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t5x_n1+' '+t5y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t6x_n1+' '+t6y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t7x_n1+' '+t7y_n1;
+
+
+	// konstante za rep
+	r_rep_zunaj=1062.5;
+	r_rep_znotraj=937.5;
+	r_rep_konec=62.5;
+	r_rep_začetek_znotraj=218.75;
+	r_rep_začetek_zunaj=343.75;
+
+	sin_kot_za_rep=(r_rep_konec+r_rep_začetek_znotraj)/(r_rep_začetek_znotraj+r_telo)
+	cos_kot_za_rep= Math.sqrt(1 -Math.pow(sin_kot_za_rep,2));
+
+	krivulje=krivulje+
+	' A '+(r_telo)+' '+(r_telo)+' 0 0 1 '+(-r_telo*cos_kot_za_rep)+' '+(r_telo*sin_kot_za_rep)+
+	' A '+(r_rep_začetek_znotraj)+' '+(r_rep_začetek_znotraj)+' 0 1 0 '+(-(r_telo+2*r_rep_začetek_znotraj)*cos_kot_za_rep)+' '+((r_telo+2*r_rep_začetek_znotraj)*sin_kot_za_rep)+
+	' A '+(r_rep_znotraj)+' '+(r_rep_znotraj)+' 0 1 0 '+(-r_rep_znotraj)+' '+(0)+
+	' A '+(r_rep_konec)+' '+(r_rep_konec)+' 0 0 1 '+(-r_rep_zunaj)+' '+(0)+
+	' A '+(r_rep_zunaj)+' '+(r_rep_zunaj)+' 0 1 1 '+(-(r_telo+2*r_rep_začetek_znotraj+2*r_rep_konec)*cos_kot_za_rep)+' '+((r_telo+2*r_rep_začetek_znotraj+2*r_rep_konec)*sin_kot_za_rep)+
+	' A '+(r_rep_začetek_zunaj)+' '+(r_rep_začetek_zunaj)+' 0 0 1 '+(-(r_telo+r_rep_začetek_znotraj)*cos_kot_za_rep)+' '+(-r_rep_konec)+
+	' A '+(r_rep_začetek_znotraj)+' '+(r_rep_začetek_znotraj)+' 0 0 0 '+(-r_telo*cos_kot_za_rep)+' '+(-r_telo*sin_kot_za_rep);
+
+
+	// priprave za izris tretje noge
+	cos_kot_1=Math.cos((Math.PI/180)*237);
+	sin_kot_1=Math.sin((Math.PI/180)*237);
+
+	t0x_n1= cos_kot_1*t0x - sin_kot_1*t0y;
+	t0y_n1= sin_kot_1*t0x + cos_kot_1*t0y;
+	t1x_n1= cos_kot_1*t1x - sin_kot_1*t1y;
+	t1y_n1= sin_kot_1*t1x + cos_kot_1*t1y;
+	t2x_n1= cos_kot_1*t2x - sin_kot_1*t2y;
+	t2y_n1= sin_kot_1*t2x + cos_kot_1*t2y;
+	t3x_n1= cos_kot_1*t3x - sin_kot_1*t3y;
+	t3y_n1= sin_kot_1*t3x + cos_kot_1*t3y;
+	t4x_n1= cos_kot_1*t4x - sin_kot_1*t4y;
+	t4y_n1= sin_kot_1*t4x + cos_kot_1*t4y;
+	t5x_n1= cos_kot_1*t5x - sin_kot_1*t5y;
+	t5y_n1= sin_kot_1*t5x + cos_kot_1*t5y;
+	t6x_n1= cos_kot_1*t6x - sin_kot_1*t6y;
+	t6y_n1= sin_kot_1*t6x + cos_kot_1*t6y;
+	t7x_n1= cos_kot_1*t7x - sin_kot_1*t7y;
+	t7y_n1= sin_kot_1*t7x + cos_kot_1*t7y;
+
+	krivulje=krivulje+
+	' A '+(r_telo)+' '+(r_telo)+' 0 0 1 '+t0x_n1+' '+t0y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t1x_n1+' '+t1y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t2x_n1+' '+t2y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t3x_n1+' '+t3y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t4x_n1+' '+t4y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t5x_n1+' '+t5y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t6x_n1+' '+t6y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t7x_n1+' '+t7y_n1;
+
+
+	// priprave za izris četrte noge
+	cos_kot_1=Math.cos((Math.PI/180)*303);
+	sin_kot_1=Math.sin((Math.PI/180)*303);
+
+	t0x_n1= cos_kot_1*t0x - sin_kot_1*t0y;
+	t0y_n1= sin_kot_1*t0x + cos_kot_1*t0y;
+	t1x_n1= cos_kot_1*t1x - sin_kot_1*t1y;
+	t1y_n1= sin_kot_1*t1x + cos_kot_1*t1y;
+	t2x_n1= cos_kot_1*t2x - sin_kot_1*t2y;
+	t2y_n1= sin_kot_1*t2x + cos_kot_1*t2y;
+	t3x_n1= cos_kot_1*t3x - sin_kot_1*t3y;
+	t3y_n1= sin_kot_1*t3x + cos_kot_1*t3y;
+	t4x_n1= cos_kot_1*t4x - sin_kot_1*t4y;
+	t4y_n1= sin_kot_1*t4x + cos_kot_1*t4y;
+	t5x_n1= cos_kot_1*t5x - sin_kot_1*t5y;
+	t5y_n1= sin_kot_1*t5x + cos_kot_1*t5y;
+	t6x_n1= cos_kot_1*t6x - sin_kot_1*t6y;
+	t6y_n1= sin_kot_1*t6x + cos_kot_1*t6y;
+	t7x_n1= cos_kot_1*t7x - sin_kot_1*t7y;
+	t7y_n1= sin_kot_1*t7x + cos_kot_1*t7y;
+
+	krivulje=krivulje+
+	' A '+(r_telo)+' '+(r_telo)+' 0 0 1 '+t0x_n1+' '+t0y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t1x_n1+' '+t1y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t2x_n1+' '+t2y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t3x_n1+' '+t3y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t4x_n1+' '+t4y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t5x_n1+' '+t5y_n1+
+	' A '+(r_prsta)+' '+(r_prsta)+' 0 1 1 '+t6x_n1+' '+t6y_n1+
+	' A '+(r_med_prstoma)+' '+(r_med_prstoma)+' 0 1 0 '+t7x_n1+' '+t7y_n1;
+
+
+	krivulje=krivulje+
+	' A '+(r_telo)+' '+(r_telo)+' 0 0 1 '+(cos_alfa_nosa*r_telo)+' '+(-sin_alfa_nosa*r_telo)+
+	' A '+(r_roba_nosa)+' '+(r_roba_nosa)+' 0 0 0 '+(r_telo+cos_beta_nosa*r_konca_nosa)+' '+(-sin_beta_nosa*r_konca_nosa)+
+	' A '+(r_konca_nosa)+' '+(r_konca_nosa)+' 0 0 1 '+(r_telo+r_konca_nosa)+' '+(0)+' z ';
+
+	var r_oko=62.5;
+	var h_oko=125;
+
+	// izris oči
+	krivulje=krivulje+
+	' M '+(350-r_oko)+' '+(-h_oko)+
+	' A '+(r_oko)+' '+(r_oko)+' 0 0 0 '+(350+r_oko)+' '+(-h_oko)+
+	' A '+(r_oko)+' '+(r_oko)+' 0 0 0 '+(350-r_oko)+' '+(-h_oko)+' z '+
+	' M '+(350-r_oko)+' '+(h_oko)+
+	' A '+(r_oko)+' '+(r_oko)+' 0 0 0 '+(350+r_oko)+' '+(h_oko)+
+	' A '+(r_oko)+' '+(r_oko)+' 0 0 0 '+(350-r_oko)+' '+(h_oko)+' z ';
+
+
+	function on_load() {
+		var newMenuRoot = parseXML( printNode( document.getElementById( 'NewMenu' ) ), contextMenu );
+		contextMenu.replaceChild( newMenuRoot, contextMenu.firstChild );
+
+		document.getElementById('logotip').setAttribute('d',krivulje);
+	}
+]]></script>
+
+<defs>
+	<menu id='NewMenu' xmlns='http://foo'>
+		<item action='ZoomIn'>povečaj</item>
+		<item action='ZoomOut'>zmanjšaj</item>
+		<item action='OriginalView'>originalna velikost</item>
+		<separator/>
+		<item action='Quality'>visoka kvaliteta</item>
+		<item action='Pause'>pavza</item>
+		<item action='Mute'>tišina</item>
+		<separator/>
+		<item action='Copy'>kopiraj tekst</item>
+		<item action='Find'>poišči...</item>
+		<item action='FindAgain'>poišči naslednje</item>
+		<separator/>
+		<item action='CopySVG'>kopiraj SVG</item>
+		<item action='SaveAs'>posnami SVG kot...</item>
+		<item action='SaveSnapshotAs'>posnami DOM kot...</item>
+		<separator/>
+		<item action='Help'>Help...</item>
+		<item action='About'>About ASV</item>
+ 	</menu>
+</defs>
+
+<path id="logotip" stroke="black" stroke-width="10" fill="orange" d="M0 0z"/>
+
+</svg>
